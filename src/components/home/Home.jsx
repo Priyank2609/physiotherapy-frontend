@@ -13,8 +13,13 @@ import toast from "react-hot-toast";
 import { Navigate } from "react-router-dom";
 
 function Home() {
+  const userInfo = useSelector((state) => state.userInfo.userInfo);
+  const user = userInfo?.user;
+  const isAdmin = user?.role === "Admin";
   const { data, isLoading } = useGetAllAppointmentQuery(undefined, {
     pollingInterval: 30000,
+    // Only fetch if user is admin to save bandwidth
+    skip: !isAdmin,
   });
 
   const appointmentData = data?.data || [];
@@ -22,6 +27,8 @@ function Home() {
   console.log(prevCountRef);
 
   useEffect(() => {
+    if (!user || user.role !== "admin") return;
+
     if (!isLoading && appointmentData.length > prevCountRef.current) {
       const newPending = appointmentData.filter(
         (app) => app.status === "pending",

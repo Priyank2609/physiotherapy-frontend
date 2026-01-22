@@ -17,17 +17,23 @@ const AdminReviews = () => {
   const reviewsList = reviews?.reviews || [];
 
   const handleStatusChange = async (id, newStatus) => {
-    // console.log(newStatus);
+    // 1. Create the loading toast and store its unique ID
+    const toastId = toast.loading("Updating status...");
 
     try {
       await updateStatus({ id, isApproved: newStatus }).unwrap();
-      toast.success(newStatus ? "Review Published" : "Review Hidden");
+
+      toast.success(newStatus ? "Review Published" : "Review Hidden", {
+        id: toastId,
+      });
+
       refetch();
     } catch (err) {
-      toast.error("Operation failed");
+      toast.error("Operation failed", {
+        id: toastId,
+      });
     }
   };
-
   if (isLoading)
     return (
       <Container>
