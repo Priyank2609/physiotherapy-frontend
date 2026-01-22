@@ -26,6 +26,7 @@ const BookAppointment = () => {
   const services = data?.data || [];
   const doctors = doc?.data || [];
   const navigate = useNavigate();
+
   const onSubmit = async (formData) => {
     const loadingToast = toast.loading("Checking availability...");
 
@@ -51,7 +52,7 @@ const BookAppointment = () => {
         {
           id: loadingToast,
           duration: 5000,
-        },
+        }
       );
 
       navigate("/");
@@ -61,6 +62,7 @@ const BookAppointment = () => {
       });
     }
   };
+
   return (
     <Wrapper>
       <section className="form-hero">

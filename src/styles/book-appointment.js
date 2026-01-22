@@ -113,18 +113,32 @@ export const Wrapper = styled.div`
     input,
     select,
     textarea {
-      padding: 16px;
+      /* CHANGES HERE: Adjusted padding and added min-height */
+      padding: 12px 16px; 
+      min-height: 54px; 
+      width: 100%;
       border: 1.5px solid var(--border-color);
       border-radius: 12px;
       font-size: 1rem;
       background: #fcfdfe;
       transition: all 0.2s ease;
+      color: var(--text-main);
+      font-family: inherit;
 
       &:focus {
         outline: none;
         border-color: var(--accent-cyan);
         box-shadow: 0 0 0 4px rgba(34, 166, 179, 0.1);
       }
+    }
+
+    /* Specifically target date and time to ensure icons are aligned */
+    input[type="date"],
+    input[type="time"] {
+        display: flex;
+        align-items: center;
+        /* Ensures the text is centered vertically in mobile views */
+        line-height: normal;
     }
 
     .error {
@@ -164,6 +178,11 @@ export const Wrapper = styled.div`
       background: #1e949f;
       transform: translateY(-3px);
       box-shadow: 0 10px 20px rgba(34, 166, 179, 0.2);
+    }
+
+    &:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
     }
   }
 `;
