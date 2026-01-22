@@ -4,9 +4,10 @@ import { TeamCard, TeamGrid, TeamSection } from "../../styles/team";
 import { FaLinkedinIn, FaTwitter, FaEnvelope } from "react-icons/fa";
 import { useGetDoctersQuery } from "../../slices/api.slice";
 import { NavLink } from "react-router-dom";
+import { Wrapper } from "../../styles/service-detail";
 
 const Team = () => {
-  const { data, isLoading, error, refetch } = useGetDoctersQuery();
+  const { data, isLoading, isError, refetch } = useGetDoctersQuery();
 
   useEffect(() => {
     refetch();
@@ -15,7 +16,34 @@ const Team = () => {
   // console.log(newData);
 
   if (isLoading) {
-    return <p>looding....</p>;
+    return (
+      <Wrapper>
+        <div className="status-container">
+          <div className="loader"></div>
+          <p className="status-text">Fetching treatment details...</p>
+        </div>
+      </Wrapper>
+    );
+  }
+
+  if (isError) {
+    return (
+      <Wrapper>
+        <div className="status-container">
+          <div className="error-icon">!</div>
+          <h2 className="status-heading">Connection Issue</h2>
+          <p className="status-text">
+            We couldn't load the appointment details. Please try again.
+          </p>
+          <button
+            onClick={() => window.location.reload()}
+            className="retry-btn"
+          >
+            Retry Connection
+          </button>
+        </div>
+      </Wrapper>
+    );
   }
 
   return (
