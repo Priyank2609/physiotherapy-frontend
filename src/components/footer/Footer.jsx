@@ -74,11 +74,11 @@ const Footer = () => {
 
             <div className="socials">
               <a
-                href="https://wa.me/918460782897"
+                href="https://api.whatsapp.com/send?phone=918460782897&text=Hi!%20I%20contacted%20you%20from%20your%20website."
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FaWhatsapp size={20} strokeWidth={2.5} />
+                <FaWhatsapp size={20} />
               </a>
 
               <a
