@@ -185,39 +185,9 @@ export const ServiceDetailWrapper = styled.div`
       color: #ef4444;
     }
   }
-    To ensure the colors match your theme exactly without using CSS variables, I have replaced them with their hex codes (Green: #0b5d3b, Cyan: #22a6b3, etc.).
+`;
 
-1. Updated Logic in BookAppointment.js
-JavaScript
-
-  if (isLoading) {
-    return (
-      <Wrapper>
-        <div className="status-container">
-          <div className="loader"></div>
-          <p>Loading service details...</p>
-        </div>
-      </Wrapper>
-    );
-  }
-
-  if (isError || !service) {
-    return (
-      <Wrapper>
-        <div className="status-container">
-          <div className="error-icon">!</div>
-          <h2>Service Not Found</h2>
-          <p>We couldn't find the treatment you're looking for.</p>
-          <NavLink to="/" className="back-btn">Return to Home</NavLink>
-        </div>
-      </Wrapper>
-    );
-  }
-2. Updated Styles in styles/book-appointment.js
-Add these styles inside your Wrapper component. I have replaced all variables with hardcoded hex codes.
-
-JavaScript
-
+export const Wrapper = styled.div`
   /* Status Containers (Loading/Error) */
   .status-container {
     display: flex;
@@ -290,7 +260,11 @@ JavaScript
   }
 
   @keyframes rotation {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 `;

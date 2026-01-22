@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { ServiceDetailWrapper } from "../../styles/service-detail";
+import { ServiceDetailWrapper, Wrapper } from "../../styles/service-detail";
 import { NavLink, useParams } from "react-router-dom";
 import { useGetServiceByIdQuery } from "../../slices/api.slice";
 
