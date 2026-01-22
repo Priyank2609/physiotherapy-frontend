@@ -185,4 +185,91 @@ export const AppointmentWrapper = styled.div`
       gap: 12px;
     }
   }
+  /* Base Screen for both states */
+  .status-screen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    padding: 20px;
+    background: #ffffff;
+  }
+
+  /* --- LOADING STYLES --- */
+  .loader-wrapper {
+    text-align: center;
+  }
+
+  .spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(34, 193, 220, 0.1);
+    border-left-color: #22c1dc; /* Your Theme Cyan */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+  }
+
+  .loading-text {
+    color: #064e3b; /* Your Theme Green */
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  /* --- ERROR STYLES --- */
+  .error-card {
+    max-width: 400px;
+    text-align: center;
+    padding: 40px;
+    background: #fffafa;
+    border: 1px solid #fee2e2;
+    border-radius: 24px;
+  }
+
+  .error-icon {
+    width: 60px;
+    height: 60px;
+    background: #ef4444;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0 auto 20px;
+  }
+
+  .error-title {
+    color: #064e3b;
+    margin-bottom: 10px;
+  }
+
+  .error-msg {
+    color: #64748b;
+    margin-bottom: 25px;
+    line-height: 1.5;
+  }
+
+  .retry-button {
+    background: #064e3b;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .retry-button:hover {
+    transform: translateY(-2px);
+    background: #043a2c;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
 `;

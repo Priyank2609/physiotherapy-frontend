@@ -44,12 +44,44 @@ const StatusDropdown = ({
 };
 
 const Appointments = () => {
-  const { data, refetch } = useGetAllAppointmentQuery();
+  const { data, isLoading, isError, refetch } = useGetAllAppointmentQuery();
   const [update] = useUpdateAppointmentMutation();
 
   const appointmentData = data?.data || [];
   // console.log(appointmentData);
+  // 1. LOADING STATE
+  if (isLoading) {
+    return (
+      <div className="status-screen">
+        <div className="loader-wrapper">
+          <div className="spinner"></div>
+          <p className="loading-text">Fetching Appointment Details...</p>
+        </div>
+      </div>
+    );
+  }
 
+  // 2. ERROR STATE
+  if (isError) {
+    return (
+      <div className="status-screen">
+        <div className="error-card">
+          <div className="error-icon">!</div>
+          <h2 className="error-title">Connection Error</h2>
+          <p className="error-msg">
+            We couldn't reach the server. Please check your internet or try
+            again.
+          </p>
+          <button
+            onClick={() => window.location.reload()}
+            className="retry-button"
+          >
+            Retry Connection
+          </button>
+        </div>
+      </div>
+    );
+  }
   return (
     <AppointmentWrapper>
       <header className="page-header-bg">
