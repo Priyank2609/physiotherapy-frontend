@@ -34,9 +34,31 @@ const ServiceDetail = () => {
       : service.treatments.split(",").map((i) => i.trim())
     : [];
 
-  if (isLoading) return <p className="status-text">Loading...</p>;
-  if (isError || !service)
-    return <p className="status-text error">Service not found.</p>;
+  if (isLoading) {
+    return (
+      <Wrapper>
+        <div className="status-container">
+          <div className="loader"></div>
+          <p>Loading service details...</p>
+        </div>
+      </Wrapper>
+    );
+  }
+
+  if (isError || !service) {
+    return (
+      <Wrapper>
+        <div className="status-container">
+          <div className="error-icon">!</div>
+          <h2>Service Not Found</h2>
+          <p>We couldn't find the treatment you're looking for.</p>
+          <NavLink to="/" className="back-btn">
+            Return to Home
+          </NavLink>
+        </div>
+      </Wrapper>
+    );
+  }
 
   return (
     <ServiceDetailWrapper>

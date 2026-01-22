@@ -185,4 +185,112 @@ export const ServiceDetailWrapper = styled.div`
       color: #ef4444;
     }
   }
+    To ensure the colors match your theme exactly without using CSS variables, I have replaced them with their hex codes (Green: #0b5d3b, Cyan: #22a6b3, etc.).
+
+1. Updated Logic in BookAppointment.js
+JavaScript
+
+  if (isLoading) {
+    return (
+      <Wrapper>
+        <div className="status-container">
+          <div className="loader"></div>
+          <p>Loading service details...</p>
+        </div>
+      </Wrapper>
+    );
+  }
+
+  if (isError || !service) {
+    return (
+      <Wrapper>
+        <div className="status-container">
+          <div className="error-icon">!</div>
+          <h2>Service Not Found</h2>
+          <p>We couldn't find the treatment you're looking for.</p>
+          <NavLink to="/" className="back-btn">Return to Home</NavLink>
+        </div>
+      </Wrapper>
+    );
+  }
+2. Updated Styles in styles/book-appointment.js
+Add these styles inside your Wrapper component. I have replaced all variables with hardcoded hex codes.
+
+JavaScript
+
+  /* Status Containers (Loading/Error) */
+  .status-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    text-align: center;
+    padding: 20px;
+
+    h2 {
+      color: #0b5d3b; /* Primary Green */
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    p {
+      color: #636e72;
+      margin-bottom: 25px;
+      font-size: 1rem;
+    }
+  }
+
+  /* Animated Loader */
+  .loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid rgba(34, 166, 179, 0.1); /* Faint Cyan */
+    border-bottom-color: #22a6b3; /* Accent Cyan */
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    margin-bottom: 20px;
+  }
+
+  /* Error Circle */
+  .error-icon {
+    width: 60px;
+    height: 60px;
+    background: #fff5f5;
+    color: #e74c3c; /* Error Red */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    border: 2px solid #fed7d7;
+  }
+
+  /* Back Button styling for NavLink */
+  .back-btn {
+    background: #0b5d3b; /* Primary Green */
+    color: #ffffff;
+    padding: 12px 28px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(11, 93, 59, 0.2);
+
+    &:hover {
+      background: #08422a;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(11, 93, 59, 0.3);
+    }
+  }
+
+  @keyframes rotation {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
 `;
