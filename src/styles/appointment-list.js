@@ -194,7 +194,9 @@ export const AppointmentWrapper = styled.div`
     padding: 20px;
     background: #ffffff;
   }
+`;
 
+export const Wrapper = styled.div`
   /* --- LOADING STYLES --- */
   .loader-wrapper {
     text-align: center;

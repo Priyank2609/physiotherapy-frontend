@@ -6,12 +6,18 @@ import {
   ActionGroup,
   AdminCard,
   Container,
+  ContactWrapper,
 } from "../../styles/review-lists";
 import { useUpdateReviewMutation } from "../../slices/form.slice";
 import { useGetAdminReviewsQuery } from "../../slices/api.slice";
 
 const AdminReviews = () => {
-  const { data: reviews, isLoading, refetch } = useGetAdminReviewsQuery();
+  const {
+    data: reviews,
+    isLoading,
+    isError,
+    refetch,
+  } = useGetAdminReviewsQuery();
   const [updateStatus, { isLoading: isUpdating }] = useUpdateReviewMutation();
 
   const reviewsList = reviews?.reviews || [];
@@ -34,12 +40,19 @@ const AdminReviews = () => {
       });
     }
   };
-  if (isLoading)
+  if (isLoading) {
     return (
-      <Container>
-        <h2>Synchronizing Reviews...</h2>
-      </Container>
+      <ContactWrapper>
+        <div className="status-container">
+          <div className="loader-ring"></div>
+          <h2 className="status-title">Synchronizing Reviews</h2>
+          <p className="status-subtitle">
+            Fetching the latest patient feedback for you...
+          </p>
+        </div>
+      </ContactWrapper>
     );
+  }
 
   return (
     <Container>

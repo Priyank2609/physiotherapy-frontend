@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { AppointmentWrapper } from "../../styles/appointment-list";
+import { AppointmentWrapper, Wrapper } from "../../styles/appointment-list";
 import { useGetAllAppointmentQuery } from "../../slices/api.slice";
 import { useUpdateAppointmentMutation } from "../../slices/form.slice";
 import { RefreshCw } from "lucide-react";
@@ -52,34 +52,38 @@ const Appointments = () => {
   // 1. LOADING STATE
   if (isLoading) {
     return (
-      <div className="status-screen">
-        <div className="loader-wrapper">
-          <div className="spinner"></div>
-          <p className="loading-text">Fetching Appointment Details...</p>
+      <Wrapper>
+        <div className="status-screen">
+          <div className="loader-wrapper">
+            <div className="spinner"></div>
+            <p className="loading-text">Fetching Appointment Details...</p>
+          </div>
         </div>
-      </div>
+      </Wrapper>
     );
   }
 
   // 2. ERROR STATE
   if (isError) {
     return (
-      <div className="status-screen">
-        <div className="error-card">
-          <div className="error-icon">!</div>
-          <h2 className="error-title">Connection Error</h2>
-          <p className="error-msg">
-            We couldn't reach the server. Please check your internet or try
-            again.
-          </p>
-          <button
-            onClick={() => window.location.reload()}
-            className="retry-button"
-          >
-            Retry Connection
-          </button>
+      <Wrapper>
+        <div className="status-screen">
+          <div className="error-card">
+            <div className="error-icon">!</div>
+            <h2 className="error-title">Connection Error</h2>
+            <p className="error-msg">
+              We couldn't reach the server. Please check your internet or try
+              again.
+            </p>
+            <button
+              onClick={() => window.location.reload()}
+              className="retry-button"
+            >
+              Retry Connection
+            </button>
+          </div>
         </div>
-      </div>
+      </Wrapper>
     );
   }
   return (

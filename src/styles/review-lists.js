@@ -1,5 +1,51 @@
 import styled from "styled-components";
 
+export const ContactWrapper = styled.div`
+  .status-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh; /* Keeps it centered in the viewport */
+    text-align: center;
+    background: #ffffff;
+  }
+
+  .loader-ring {
+    width: 60px;
+    height: 60px;
+    border: 5px solid rgba(34, 193, 220, 0.1); /* Light Cyan background */
+    border-top: 5px solid #22c1dc; /* Deep Cyan active part */
+    border-radius: 50%;
+    animation: spin 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    margin-bottom: 25px;
+  }
+
+  .status-title {
+    color: #064e3b; /* Theme Green */
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+
+  .status-subtitle {
+    color: #64748b;
+    font-size: 1rem;
+    max-width: 300px;
+    line-height: 1.5;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+`;
+
 export const Container = styled.div`
   background-color: #f9fafb;
   min-height: 100vh;
