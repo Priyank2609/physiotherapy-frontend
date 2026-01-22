@@ -13,6 +13,7 @@ import {
   useGetAdminBlogsQuery,
   useGetAllBlogsQuery,
 } from "../../slices/api.slice";
+import { useSelector } from "react-redux";
 import {
   ListingWrapper,
   BlogGrid,
@@ -23,26 +24,18 @@ import {
   Container,
   CreateButton,
 } from "../../styles/blog";
-import { useSelector } from "react-redux";
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
+    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
   },
 };
 
 const cardVariants = {
   hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: "easeOut" },
-  },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
 const Blogs = () => {
@@ -61,7 +54,8 @@ const Blogs = () => {
 
   useEffect(() => {
     refetch();
-  }, []);
+  }, [refetch]);
+
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return isNaN(date.getTime())
@@ -77,7 +71,7 @@ const Blogs = () => {
   if (error)
     return (
       <LoadingState>
-        Error loading data. <button onClick={refetch}>Try Again</button>
+        Error loading data. <button onClick={() => refetch()}>Try Again</button>
       </LoadingState>
     );
 
@@ -106,7 +100,7 @@ const Blogs = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <CreateButton to="/admin/create-blog">
-                  <Plus size={20} /> Create Medical Blog
+                  <Plus size={20} /> <span>Create Medical Blog</span>
                 </CreateButton>
               </motion.div>
             )}
@@ -127,10 +121,10 @@ const Blogs = () => {
             <h2>Archive Empty</h2>
             <p>
               Our medical library is currently being updated. Please check back
-              later for new recovery insights.
+              later.
             </p>
             <button className="refresh-link" onClick={() => refetch()}>
-              <RefreshCw size={16} /> Refresh Library
+              <RefreshCw size={16} /> Refresh
             </button>
           </motion.div>
         ) : (

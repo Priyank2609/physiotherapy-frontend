@@ -52,7 +52,7 @@ const BookAppointment = () => {
         {
           id: loadingToast,
           duration: 5000,
-        }
+        },
       );
 
       navigate("/");
@@ -179,6 +179,7 @@ const BookAppointment = () => {
             <label>Appointment Date *</label>
             <input
               type="date"
+              placeholder="Select Date"
               {...register("appointmentDate", { required: "Date is required" })}
             />
             {errors.appointmentDate && (
@@ -190,6 +191,7 @@ const BookAppointment = () => {
             <label>Appointment Time *</label>
             <input
               type="time"
+              placeholder="Select Time"
               {...register("appointmentTime", { required: "Time is required" })}
             />
             {errors.appointmentTime && (
