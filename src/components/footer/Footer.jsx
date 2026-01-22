@@ -74,11 +74,11 @@ const Footer = () => {
 
             <div className="socials">
               <a
-                href="https://api.whatsapp.com/send?phone=918460782897&text=Hi!%20I%20contacted%20you%20from%20your%20website."
+                href="https://wa.me/8460792897"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FaWhatsapp size={20} />
+                <FaWhatsapp size={20} strokeWidth={2.5} />
               </a>
 
               <a
@@ -89,7 +89,7 @@ const Footer = () => {
                 <Instagram size={20} strokeWidth={2.5} />
               </a>
 
-              <a href="#" target="_blank" rel="noopener noreferrer">
+              <a href="/" target="_blank" rel="noopener noreferrer">
                 <Facebook size={20} strokeWidth={2.5} />
               </a>
               <NavLink to={"/contact"}>
