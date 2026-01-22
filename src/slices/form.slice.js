@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const formSlice = createApi({
   reducerPath: "formSlice",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3002/",
+    baseUrl: "https://physiotherapy-backend-6uw3.onrender.com/",
     credentials: "include",
   }),
 
