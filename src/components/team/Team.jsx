@@ -20,7 +20,7 @@ const Team = () => {
       <Wrapper>
         <div className="status-container">
           <div className="loader"></div>
-          <p className="status-text">Fetching treatment details...</p>
+          <p className="status-text">Connecting with Our Specialists...</p>
         </div>
       </Wrapper>
     );
