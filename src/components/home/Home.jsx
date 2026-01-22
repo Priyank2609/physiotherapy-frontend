@@ -18,7 +18,7 @@ function Home() {
   const isAdmin = user?.role === "Admin";
   const { data, isLoading } = useGetAllAppointmentQuery(undefined, {
     pollingInterval: 30000,
-    // Only fetch if user is admin to save bandwidth
+
     skip: !isAdmin,
   });
 
@@ -27,7 +27,7 @@ function Home() {
   console.log(prevCountRef);
 
   useEffect(() => {
-    if (!user || user.role !== "admin") return;
+    if (!isAdmin) return;
 
     if (!isLoading && appointmentData.length > prevCountRef.current) {
       const newPending = appointmentData.filter(
@@ -93,7 +93,7 @@ function Home() {
       }
     }
     prevCountRef.current = appointmentData.length;
-  }, [appointmentData, isLoading]);
+  }, [appointmentData, isLoading, isAdmin]);
 
   return (
     <div>
