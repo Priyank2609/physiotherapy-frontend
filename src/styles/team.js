@@ -31,49 +31,38 @@ export const TeamSection = styled.section`
     z-index: 1;
   }
 
-  .view-all-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 60px;
-  }
-
   .view-all-link {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 15px;
-    padding: 14px 32px;
-    background: #064e3b; /* Theme Green */
-    color: white;
-    text-decoration: none;
-    border-radius: 50px;
+    gap: 12px;
+    padding: 16px 36px;
+    background: #064e3b;
+    color: #fff;
+    border-radius: 100px;
     font-weight: 700;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 10px 20px rgba(6, 78, 59, 0.15);
-
-    span {
-      font-size: 1rem;
-      letter-spacing: 0.5px;
-    }
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(6, 78, 59, 0.2);
 
     .arrow-icon {
-      background: #22c1dc; /* Theme Cyan */
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
-      transition: transform 0.3s ease;
+      width: 28px;
+      height: 28px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      transition: all 0.3s ease;
     }
 
     &:hover {
-      background: #043a2c;
+      background: #0b5d3b;
       transform: translateY(-3px);
-      box-shadow: 0 15px 30px rgba(6, 78, 59, 0.25);
+      box-shadow: 0 15px 30px rgba(6, 78, 59, 0.3);
 
       .arrow-icon {
-        transform: translateX(5px);
+        background: #22c1dc;
+        transform: rotate(-45deg); /* Professional arrow tilt */
       }
     }
   }
