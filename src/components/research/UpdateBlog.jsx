@@ -27,7 +27,7 @@ const UpdateBlog = () => {
 
   const { data: response, isLoading: isFetching } = useGetBlogByIdQuery(slug);
   const [updateBlog, { isLoading: isUpdating }] = useUpdateBlogMutation();
-  console.log(response);
+  // console.log(response);
 
   const { register, control, handleSubmit, reset, setValue } = useForm();
 

@@ -14,7 +14,7 @@ const Team = () => {
   }, []);
   const newData = data?.data || [];
   const twoData = data?.data.slice(0, 2) || [];
-  console.log("twodata", twoData);
+  // console.log("twodata", twoData);
 
   const isDoctors = location.pathname === "/doctors";
 
