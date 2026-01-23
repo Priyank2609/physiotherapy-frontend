@@ -113,7 +113,7 @@ const CreateDoctor = () => {
         duration: 4000,
       });
 
-      navigate("/admin/doctors");
+      navigate("/doctors");
     } catch (error) {
       toast.error(error?.data?.message || "Failed to create doctor ❌", {
         id: loadingToast,
