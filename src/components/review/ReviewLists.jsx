@@ -31,11 +31,10 @@ const AdminReviews = () => {
       await updateStatus({ id, isApproved: newStatus }).unwrap();
       toast.success(newStatus ? "Review Published" : "Review Hidden", {
         id: toastId,
-        duration: 4000,
       });
       refetch();
     } catch (err) {
-      toast.error("Operation failed", { id: toastId, duration: 4000 });
+      toast.error("Operation failed", { id: toastId });
     } finally {
       setProcessingId(null);
     }
