@@ -118,6 +118,12 @@ const Team = () => {
             </motion.div>
           ))}
         </TeamGrid>
+        <div className="view-all-container">
+          <NavLink to="/all-doctors" className="view-all-link">
+            <span>Discover All Specialists</span>
+            <div className="arrow-icon">→</div>
+          </NavLink>
+        </div>
       </div>
     </TeamSection>
   );

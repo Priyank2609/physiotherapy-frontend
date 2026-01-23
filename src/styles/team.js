@@ -31,6 +31,53 @@ export const TeamSection = styled.section`
     z-index: 1;
   }
 
+  .view-all-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+  }
+
+  .view-all-link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 14px 32px;
+    background: #064e3b; /* Theme Green */
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 20px rgba(6, 78, 59, 0.15);
+
+    span {
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+    }
+
+    .arrow-icon {
+      background: #22c1dc; /* Theme Cyan */
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover {
+      background: #043a2c;
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(6, 78, 59, 0.25);
+
+      .arrow-icon {
+        transform: translateX(5px);
+      }
+    }
+  }
+
   .header-area {
     text-align: center;
     margin-bottom: 80px;
