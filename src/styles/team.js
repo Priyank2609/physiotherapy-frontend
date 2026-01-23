@@ -288,7 +288,7 @@ export const TeamGrid = styled.div`
 // `;
 
 /* Update your TeamCard styles */
-const TeamCard = styled.div`
+export const TeamCard = styled.div`
   background: #ffffff;
   border-radius: 24px;
   overflow: hidden;
