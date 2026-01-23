@@ -20,7 +20,6 @@ const Review = () => {
       <Wrapper>
         <div className="reviews-loading">
           <p>Loading community reviews...</p>
-          {/* Optional: Add a spinner or skeleton loader here */}
         </div>
       </Wrapper>
     );
