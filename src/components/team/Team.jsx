@@ -3,19 +3,17 @@ import { motion } from "framer-motion";
 import { TeamCard, TeamGrid, TeamSection } from "../../styles/team";
 import { FaLinkedinIn, FaTwitter, FaEnvelope } from "react-icons/fa";
 import { useGetDoctersQuery } from "../../slices/api.slice";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useLocation, useParams } from "react-router-dom";
 import { Wrapper } from "../../styles/service-detail";
 
 const Team = () => {
   const { data, isLoading, isError, refetch } = useGetDoctersQuery();
-  const { doctors } = useParams();
-  console.log(doctors);
-
+  const location = useLocation();
   useEffect(() => {
     refetch();
   }, []);
   const newData = data?.data || [];
-  // console.log(newData);
+  const isDoctors = location.pathname === "/doctors";
 
   if (isLoading) {
     return (
@@ -120,24 +118,26 @@ const Team = () => {
             </motion.div>
           ))}
         </TeamGrid>
-        <div className="view-all-container">
-          <NavLink to="/doctors" className="view-all-link">
-            <span>Discover All Specialists</span>
-            <div className="arrow-icon">
-              {" "}
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </div>
-          </NavLink>
-        </div>
+        {!isDoctors && (
+          <div className="view-all-container">
+            <NavLink to="/doctors" className="view-all-link">
+              <span>Discover All Specialists</span>
+              <div className="arrow-icon">
+                {" "}
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </div>
+            </NavLink>
+          </div>
+        )}
       </div>
     </TeamSection>
   );
