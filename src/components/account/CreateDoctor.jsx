@@ -108,7 +108,7 @@ const CreateDoctor = () => {
 
       await createDoctor(formData).unwrap();
 
-      toast.success("Doctor profile created successfully ✅", {
+      toast.success("Doctor profile created successfully ", {
         id: loadingToast,
         duration: 4000,
       });
