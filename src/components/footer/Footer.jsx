@@ -72,7 +72,7 @@ const Footer = () => {
             <div className="contact-item">
               <span>Location:</span>
               <a
-                href="https://www.google.com/maps/search/?api=1&query=39,+Jayanand+Society,+Near+Priya+Cinema,+Krishna+Nagar,+Ahmedabad,+Gujarat+382345"
+                href="https://www.google.com/maps/dir/?api=1&destination=39+Jayanand+Society+Krishna+Nagar+Ahmedabad+382345"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="get-directions"
