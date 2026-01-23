@@ -94,17 +94,17 @@ export const HeroSection = styled.section`
   }
 `;
 
-export const GridContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 360px;
-  gap: 60px;
-  margin: 60px auto 120px;
-  max-width: 1140px;
-  padding: 0 24px;
-  @media (max-width: 992px) {
-    grid-template-columns: 1fr;
-  }
-`;
+// export const GridContainer = styled.div`
+//   display: grid;
+//   grid-template-columns: 1fr 360px;
+//   gap: 60px;
+//   margin: 60px auto 120px;
+//   max-width: 1140px;
+//   padding: 0 24px;
+//   @media (max-width: 992px) {
+//     grid-template-columns: 1fr;
+//   }
+// `;
 export const GridContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 360px;
