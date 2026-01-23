@@ -66,12 +66,12 @@ const DoctorDetailPage = () => {
             background: "#ffffff",
             padding: "20px",
             borderRadius: "16px",
-            boxShadow: "0 20px 40px rgba(6, 78, 59, 0.15)", // Green tinted shadow
+            boxShadow: "0 20px 40px rgba(6, 78, 59, 0.15)",
             border: "1px solid #e2e8f0",
             display: "flex",
             flexDirection: "column",
             gap: "12px",
-            pointerEvents: "auto", // Required for custom toasts
+            pointerEvents: "auto",
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
@@ -281,7 +281,17 @@ const DoctorDetailPage = () => {
             </div>
             <p className="bio-paragraph">{doctor.bio}</p>
           </motion.section>
-
+          {doctor.clinicalBackground && (
+            <motion.section variants={itemVariants}>
+              <div className="section-head">
+                <Award className="icon-teal" />
+                <h3>Clinical Background</h3>
+              </div>
+              <p className="bio-paragraph" style={{ whiteSpace: "pre-line" }}>
+                {doctor.clinicalBackground}
+              </p>
+            </motion.section>
+          )}
           <motion.section variants={itemVariants}>
             <div className="section-head">
               <Stethoscope className="icon-teal" />
