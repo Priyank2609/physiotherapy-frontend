@@ -110,7 +110,7 @@ const DoctorDetailPage = () => {
                 try {
                   await deleteDoctor(id).unwrap();
                   toast.success("Profile deleted", { id: loadId });
-                  navigate("/admin/doctors");
+                  navigate("/doctors");
                 } catch (err) {
                   toast.error("Error occurred", { id: loadId });
                 }
