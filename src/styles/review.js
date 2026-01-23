@@ -1,33 +1,66 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  /* Container for both states */
   .reviews-loading,
   .reviews-error {
     max-width: 600px;
-    margin: 2rem auto;
-    padding: 2rem;
+    margin: 3rem auto;
+    padding: 2.5rem;
     text-align: center;
-    border-radius: 12px;
-    font-family:
-      "Inter",
-      system-ui,
-      -apple-system,
-      sans-serif;
+    border-radius: 16px;
+    /* Using a shadow to match your "Working Hours" card style */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    font-family: inherit;
   }
 
-  /* Loading State Styling */
+  /* Loading State: Matches your clean white/grey background */
   .reviews-loading {
-    background-color: #f8fafc;
-    border: 1px solid #e2e8f0;
-    color: #64748b;
+    background-color: #ffffff;
+    border: 1px solid #eef2f1;
+    color: #01543d; /* Your Primary Dark Green */
   }
 
   .reviews-loading p {
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    animation: fadePulse 1.8s infinite ease-in-out;
+  }
+
+  /* Error State: Swapped harsh red for a "Muted Sage" that fits the green theme */
+  .reviews-error {
+    background-color: #f0f7f5; /* Very light mint */
+    border: 1px solid #cce2db;
+    color: #01543d;
+  }
+
+  .reviews-error p {
+    margin-bottom: 1.2rem;
     font-weight: 500;
-    margin: 0;
-    /* Simple pulse effect for the text */
-    animation: fadePulse 1.5s infinite ease-in-out;
+    color: #4b5563; /* Subtle grey for the text */
+  }
+
+  /* "Try Again" Button: Matches your header/button green */
+  .reviews-error button {
+    background-color: #01543d; /* Your exact brand green */
+    color: #ffffff;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 50px; /* Rounded pill style to match your "Logout" button */
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(1, 84, 61, 0.2);
+  }
+
+  .reviews-error button:hover {
+    background-color: #013d2c;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(1, 84, 61, 0.3);
+  }
+
+  .reviews-error button:active {
+    transform: translateY(0);
   }
 
   @keyframes fadePulse {
@@ -36,42 +69,8 @@ export const Wrapper = styled.div`
       opacity: 1;
     }
     50% {
-      opacity: 0.5;
+      opacity: 0.4;
     }
-  }
-
-  /* Error State Styling */
-  .reviews-error {
-    background-color: #fef2f2;
-    border: 1px solid #fecaca;
-    color: #991b1b;
-  }
-
-  .reviews-error p {
-    margin-bottom: 1.5rem;
-    font-weight: 500;
-  }
-
-  /* "Try Again" Button Styling */
-  .reviews-error button {
-    background-color: #dc2626;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 6px;
-    font-weight: 600;
-    cursor: pointer;
-    transition:
-      background-color 0.2s ease,
-      transform 0.1s active;
-  }
-
-  .reviews-error button:hover {
-    background-color: #b91c1c;
-  }
-
-  .reviews-error button:active {
-    transform: scale(0.98);
   }
 `;
 

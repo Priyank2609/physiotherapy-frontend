@@ -14,6 +14,7 @@ const Review = () => {
   const { data, isError, isLoading } = useGetAllReviewsQuery();
 
   const testimonials = data?.reviews || [];
+  console.log(testimonials);
 
   if (isLoading) {
     return (
@@ -80,7 +81,7 @@ const Review = () => {
                 <p className="testimonial-text">"{item.message}"</p>
 
                 <div className="user-info">
-                  <h4>{item.name}</h4>
+                  <h4>{item.patientName}</h4>
                   <span>{item.service}</span>
                 </div>
               </div>
