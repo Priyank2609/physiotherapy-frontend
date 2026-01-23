@@ -114,7 +114,9 @@ const DoctorDetailPage = () => {
                     id: loadId,
                     duration: 4000,
                   });
+
                   navigate("/doctors");
+                  toast.dismiss();
                 } catch (err) {
                   toast.error("Error occurred", { id: loadId, duration: 4000 });
                 }
