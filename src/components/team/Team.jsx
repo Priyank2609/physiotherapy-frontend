@@ -8,6 +8,8 @@ import { Wrapper } from "../../styles/service-detail";
 
 const Team = () => {
   const { data, isLoading, isError, refetch } = useGetDoctersQuery();
+  const { doctors } = useParams();
+  console.log(doctors);
 
   useEffect(() => {
     refetch();
