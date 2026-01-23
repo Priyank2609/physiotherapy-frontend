@@ -196,7 +196,9 @@ const ContactForm = () => {
               >
                 +91 84607 92897
               </motion.p>
-              <p>physioterepia1309@gmail.com</p>
+              <a href="mailto:physioterepia1309@gmail.com">
+                <p>physioterepia1309@gmail.com</p>
+              </a>
             </motion.div>
           </motion.div>
         </div>
