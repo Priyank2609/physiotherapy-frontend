@@ -105,6 +105,19 @@ export const GridContainer = styled.div`
     grid-template-columns: 1fr;
   }
 `;
+export const GridContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 60px;
+  margin: 60px auto 120px;
+  max-width: 1140px;
+  padding: 0 24px;
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+    margin: 40px auto 80px;
+    gap: 40px;
+  }
+`;
 
 export const MainContent = styled.div`
   .section-head {
@@ -116,21 +129,31 @@ export const MainContent = styled.div`
       font-size: 1.8rem;
       color: #064e3b;
       font-weight: 700;
+      @media (max-width: 480px) {
+        font-size: 1.5rem;
+      }
     }
   }
 
   .bio-paragraph {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     line-height: 1.8;
     color: #475569;
     margin-bottom: 60px;
+    @media (max-width: 768px) {
+      margin-bottom: 40px;
+    }
   }
 
   .conditions-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 16px;
     margin-bottom: 60px;
+    @media (max-width: 480px) {
+      grid-template-columns: 1fr;
+      margin-bottom: 40px;
+    }
   }
 
   .condition-pill {
@@ -153,6 +176,9 @@ export const MainContent = styled.div`
     padding: 40px;
     border-radius: 24px;
     border: 1px solid #eef2f6;
+    @media (max-width: 480px) {
+      padding: 25px 20px;
+    }
     .neuro-list {
       display: flex;
       flex-wrap: wrap;
@@ -165,9 +191,73 @@ export const MainContent = styled.div`
       font-weight: 600;
       color: #064e3b;
       border: 1px solid #e2e8f0;
+      font-size: 0.95rem;
     }
   }
 `;
+
+// export const MainContent = styled.div`
+//   .section-head {
+//     display: flex;
+//     align-items: center;
+//     gap: 15px;
+//     margin-bottom: 25px;
+//     h3 {
+//       font-size: 1.8rem;
+//       color: #064e3b;
+//       font-weight: 700;
+//     }
+//   }
+
+//   .bio-paragraph {
+//     font-size: 1.15rem;
+//     line-height: 1.8;
+//     color: #475569;
+//     margin-bottom: 60px;
+//   }
+
+//   .conditions-grid {
+//     display: grid;
+//     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+//     gap: 16px;
+//     margin-bottom: 60px;
+//   }
+
+//   .condition-pill {
+//     background: #ffffff;
+//     border: 1px solid #e2e8f0;
+//     padding: 16px;
+//     border-radius: 12px;
+//     display: flex;
+//     align-items: center;
+//     gap: 12px;
+//     font-weight: 500;
+//     transition: all 0.3s ease;
+//     .icon-blue {
+//       color: #0ea5e9;
+//     }
+//   }
+
+//   .neuro-box {
+//     background: #f8fafc;
+//     padding: 40px;
+//     border-radius: 24px;
+//     border: 1px solid #eef2f6;
+//     .neuro-list {
+//       display: flex;
+//       flex-wrap: wrap;
+//       gap: 12px;
+//     }
+//     .neuro-item {
+//       background: white;
+//       padding: 10px 18px;
+//       border-radius: 8px;
+//       font-weight: 600;
+//       color: #064e3b;
+//       border: 1px solid #e2e8f0;
+//     }
+//   }
+// `;
 
 export const Sidebar = styled.aside`
   .sticky-card {
