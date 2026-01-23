@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Check, X, Star, User } from "lucide-react";
 import toast from "react-hot-toast";
 import {
@@ -19,25 +19,25 @@ const AdminReviews = () => {
     refetch,
   } = useGetAdminReviewsQuery();
   const [updateStatus, { isLoading: isUpdating }] = useUpdateReviewMutation();
-
+  // Add useState to your imports
+  const [processingId, setProcessingId] = useState(null);
   const reviewsList = reviews?.reviews || [];
 
   const handleStatusChange = async (id, newStatus) => {
-    // 1. Create the loading toast and store its unique ID
+    setProcessingId(id);
     const toastId = toast.loading("Updating status...");
 
     try {
       await updateStatus({ id, isApproved: newStatus }).unwrap();
-
       toast.success(newStatus ? "Review Published" : "Review Hidden", {
         id: toastId,
+        duration: 4000,
       });
-
       refetch();
     } catch (err) {
-      toast.error("Operation failed", {
-        id: toastId,
-      });
+      toast.error("Operation failed", { id: toastId, duration: 4000 });
+    } finally {
+      setProcessingId(null);
     }
   };
   if (isLoading) {
@@ -117,14 +117,16 @@ const AdminReviews = () => {
                   <button
                     className="approve"
                     onClick={() => handleStatusChange(review._id, true)}
-                    disabled={review.isApproved || isUpdating}
+                    disabled={review.isApproved || processingId === review._id}
                   >
                     <Check size={16} /> Approve
                   </button>
+
                   <button
                     className="reject"
                     onClick={() => handleStatusChange(review._id, false)}
-                    disabled={!review.isApproved || isUpdating}
+                    // Same logic here
+                    disabled={!review.isApproved || processingId === review._id}
                   >
                     <X size={16} /> Hide
                   </button>
