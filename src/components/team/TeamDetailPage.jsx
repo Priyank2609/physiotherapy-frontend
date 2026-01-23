@@ -52,7 +52,7 @@ const DoctorDetailPage = () => {
 
   useEffect(() => {
     refetch();
-    window.scrollTo(0, 0); // Reset scroll on mount
+    window.scrollTo(0, 0);
   }, [refetch]);
 
   const handleDelete = () => {
