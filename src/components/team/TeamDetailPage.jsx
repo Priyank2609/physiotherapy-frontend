@@ -116,7 +116,9 @@ const DoctorDetailPage = () => {
                   });
 
                   navigate("/doctors");
-                  toast.dismiss();
+                  setTimeout(() => {
+                    toast.dismiss();
+                  }, 500);
                 } catch (err) {
                   toast.error("Error occurred", { id: loadId, duration: 4000 });
                 }
