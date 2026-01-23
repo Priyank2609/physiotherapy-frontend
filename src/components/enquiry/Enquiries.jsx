@@ -85,12 +85,16 @@ const Enquiries = () => {
 
                       <td>
                         <div className="contact-cell">
-                          <div>
-                            <Mail size={14} /> {item.email}
-                          </div>
-                          <div>
-                            <Phone size={14} /> {item.phone}
-                          </div>
+                          <a href={`mailto:${item.email}`}>
+                            <div>
+                              <Mail size={14} /> {item.email}
+                            </div>
+                          </a>
+                          <a href={`tel:${item.phone}`}>
+                            <div>
+                              <Phone size={14} /> {item.phone}
+                            </div>
+                          </a>
                         </div>
                       </td>
 

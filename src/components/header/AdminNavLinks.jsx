@@ -36,11 +36,7 @@ const AdminNavLinks = ({ closeMenu }) => (
         Reviews
       </NavLink>
     </li>
-    <li>
-      <NavLink to="/admin/doctors" onClick={closeMenu}>
-        Doctors
-      </NavLink>
-    </li>
+
     <li>
       <NavLink to="/admin/create-doctor" onClick={closeMenu}>
         Create Doctor
