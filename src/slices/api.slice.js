@@ -58,6 +58,9 @@ export const apiSlice = createApi({
     getAdminBlogs: builder.query({
       query: () => "blogs/admin-blogs",
     }),
+    getAllReviews: builder.query({
+      query: () => "reviews/",
+    }),
   }),
 });
 
@@ -78,4 +81,5 @@ export const {
   useGetReviewQuery,
   useGetAdminReviewsQuery,
   useGetAdminBlogsQuery,
+  useGetAllReviewsQuery,
 } = apiSlice;

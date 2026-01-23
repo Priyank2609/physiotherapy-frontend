@@ -1,12 +1,95 @@
 import styled from "styled-components";
 
+export const Wrapper = styled.div`
+  /* Container for both states */
+  .reviews-loading,
+  .reviews-error {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 12px;
+    font-family:
+      "Inter",
+      system-ui,
+      -apple-system,
+      sans-serif;
+  }
+
+  /* Loading State Styling */
+  .reviews-loading {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #64748b;
+  }
+
+  .reviews-loading p {
+    font-weight: 500;
+    margin: 0;
+    /* Simple pulse effect for the text */
+    animation: fadePulse 1.5s infinite ease-in-out;
+  }
+
+  @keyframes fadePulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  /* Error State Styling */
+  .reviews-error {
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #991b1b;
+  }
+
+  .reviews-error p {
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+
+  /* "Try Again" Button Styling */
+  .reviews-error button {
+    background-color: #dc2626;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      transform 0.1s active;
+  }
+
+  .reviews-error button:hover {
+    background-color: #b91c1c;
+  }
+
+  .reviews-error button:active {
+    transform: scale(0.98);
+  }
+`;
+
 export const TestimonialsSection = styled.section`
   padding: 100px 0;
   /* Matching your Deep Navy background from the image */
-  background-color: #060e1a; 
-  background-image: 
-    radial-gradient(circle at 10% 20%, rgba(34, 193, 220, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 90% 80%, rgba(11, 93, 59, 0.05) 0%, transparent 50%);
+  background-color: #060e1a;
+  background-image:
+    radial-gradient(
+      circle at 10% 20%,
+      rgba(34, 193, 220, 0.05) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 90% 80%,
+      rgba(11, 93, 59, 0.05) 0%,
+      transparent 50%
+    );
   overflow: hidden;
 
   .container {
@@ -37,7 +120,9 @@ export const TestimonialsSection = styled.section`
       color: #ffffff; /* White text for dark background */
       margin-top: 20px;
       font-weight: 800;
-      span { color: #22c1dc; }
+      span {
+        color: #22c1dc;
+      }
     }
   }
 
@@ -69,7 +154,7 @@ export const TestimonialsSection = styled.section`
 
     /* Watermark Quote Icon */
     &::before {
-      content: '“';
+      content: "“";
       position: absolute;
       top: 10px;
       left: 30px;
