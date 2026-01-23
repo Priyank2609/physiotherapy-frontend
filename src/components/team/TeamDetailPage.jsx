@@ -112,7 +112,6 @@ const DoctorDetailPage = () => {
                   await deleteDoctor(id).unwrap();
                   toast.success("Profile deleted", {
                     id: loadId,
-                    duration: 4000,
                   });
 
                   navigate("/doctors");
