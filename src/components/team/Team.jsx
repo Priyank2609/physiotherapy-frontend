@@ -119,7 +119,7 @@ const Team = () => {
           ))}
         </TeamGrid>
         <div className="view-all-container">
-          <NavLink to="/all-doctors" className="view-all-link">
+          <NavLink to="/doctors" className="view-all-link">
             <span>Discover All Specialists</span>
             <div className="arrow-icon">
               {" "}

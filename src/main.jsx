@@ -73,13 +73,12 @@ const router = createBrowserRouter([
         path: "/review-form",
         element: <ReviewForm />,
       },
-
+      { path: "/doctors", element: <Team /> },
       {
         path: "/admin/dashboard",
         element: <Dashboard />,
       },
 
-      { path: "/admin/doctors", element: <Team /> },
       { path: "/admin/reviews", element: <AdminReviews /> },
       {
         path: "/admin/service",
