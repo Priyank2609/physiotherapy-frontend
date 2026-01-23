@@ -71,7 +71,9 @@ const MapSection = () => {
                 <p>
                   Call: +91 84607 92897
                   <br />
-                  Email: physioterepia1309@gmail.com
+                  <a href="mailto:physioterepia1309@gmail.com">
+                    physioterepia1309@gmail.com
+                  </a>
                 </p>
               </div>
             </div>
