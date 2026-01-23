@@ -66,12 +66,12 @@ const DoctorDetailPage = () => {
             background: "#ffffff",
             padding: "20px",
             borderRadius: "16px",
-            boxShadow: "0 20px 40px rgba(6, 78, 59, 0.15)", // Green tinted shadow
+            boxShadow: "0 20px 40px rgba(6, 78, 59, 0.15)",
             border: "1px solid #e2e8f0",
             display: "flex",
             flexDirection: "column",
             gap: "12px",
-            pointerEvents: "auto", // Required for custom toasts
+            pointerEvents: "auto",
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
@@ -101,7 +101,6 @@ const DoctorDetailPage = () => {
               </p>
             </div>
           </div>
-
           <div style={{ display: "flex", gap: "10px", marginTop: "8px" }}>
             <button
               onClick={async () => {
@@ -111,9 +110,12 @@ const DoctorDetailPage = () => {
                   await deleteDoctor(id).unwrap();
                   toast.success("Profile deleted", {
                     id: loadId,
-                    duration: 4000,
                   });
+
                   navigate("/doctors");
+                  setTimeout(() => {
+                    toast.dismiss();
+                  }, 4000);
                 } catch (err) {
                   toast.error("Error occurred", { id: loadId, duration: 4000 });
                 }
@@ -128,12 +130,10 @@ const DoctorDetailPage = () => {
                 fontSize: "0.85rem",
                 fontWeight: "700",
                 cursor: "pointer",
-                transition: "0.2s",
               }}
             >
               Confirm Delete
             </button>
-
             <button
               onClick={() => toast.dismiss(t.id)}
               style={{
@@ -153,10 +153,7 @@ const DoctorDetailPage = () => {
           </div>
         </motion.div>
       ),
-      {
-        duration: 6000,
-        position: "bottom-right",
-      },
+      { duration: 6000, position: "bottom-right" },
     );
   };
   if (isLoading || isFetching) {
