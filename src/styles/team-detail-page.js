@@ -46,10 +46,6 @@ export const HeroSection = styled.section`
       border-radius: 20px;
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
       border: 4px solid white;
-      @media (max-width: 480px) {
-        width: 300px;
-        height: 380px;
-      }
     }
     .experience-tag {
       position: absolute;
@@ -64,11 +60,6 @@ export const HeroSection = styled.section`
       align-items: center;
       gap: 10px;
       box-shadow: 0 10px 20px rgba(6, 78, 59, 0.3);
-      @media (max-width: 480px) {
-        right: 10px;
-        bottom: 15px;
-        font-size: 0.9rem;
-      }
     }
   }
 
@@ -94,9 +85,6 @@ export const HeroSection = styled.section`
         gap: 12px;
         font-weight: 500;
         color: #334155;
-      }
-      @media (max-width: 992px) {
-        align-items: center;
       }
     }
   }
