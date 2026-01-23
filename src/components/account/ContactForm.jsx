@@ -197,12 +197,14 @@ const ContactForm = () => {
             </motion.div>
             <motion.div className="info-item" variants={itemVariants}>
               <h3>Quick Contact</h3>
-              <motion.p
-                className="highlight"
-                whileHover={{ color: "#0ea5e9", x: 5 }}
-              >
-                <a href="tel:+918460792897">+91 84607 92897</a>
-              </motion.p>
+              <a href="tel:+918460792897">
+                <motion.p
+                  className="highlight"
+                  whileHover={{ color: "#0ea5e9", x: 5 }}
+                >
+                  +91 84607 92897
+                </motion.p>
+              </a>
               <a href="mailto:physioterepia1309@gmail.com">
                 <p>physioterepia1309@gmail.com</p>
               </a>
