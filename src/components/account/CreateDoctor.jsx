@@ -117,6 +117,7 @@ const CreateDoctor = () => {
     } catch (error) {
       toast.error(error?.data?.message || "Failed to create doctor ❌", {
         id: loadingToast,
+        duration: 4000,
       });
       console.error("Create Doctor Error:", error);
     }

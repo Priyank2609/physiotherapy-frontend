@@ -13,6 +13,7 @@ const Team = () => {
     refetch();
   }, []);
   const newData = data?.data || [];
+  const twoData = data?.data.slice(0, 2) || [];
   const isDoctors = location.pathname === "/doctors";
 
   if (isLoading) {
@@ -67,56 +68,119 @@ const Team = () => {
         </motion.div>
 
         <TeamGrid>
-          {newData.map((member, index) => (
-            <motion.div
-              key={member._id}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                delay: index * 0.15,
-                duration: 0.6,
-                ease: "backOut",
-              }}
-            >
-              <TeamCard>
-                <div className="image-wrapper">
-                  <img
-                    src={member.profileImage || "/doctor-placeholder.png"}
-                    alt={member.name}
-                    onError={(e) => {
-                      e.target.src = "/doctor-placeholder.png";
-                    }}
-                  />
+          {isDoctors ? (
+            <>
+              {" "}
+              {newData.map((member, index) => (
+                <motion.div
+                  key={member._id}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    delay: index * 0.15,
+                    duration: 0.6,
+                    ease: "backOut",
+                  }}
+                >
+                  <TeamCard>
+                    <div className="image-wrapper">
+                      <img
+                        src={member.profileImage || "/doctor-placeholder.png"}
+                        alt={member.name}
+                        onError={(e) => {
+                          e.target.src = "/doctor-placeholder.png";
+                        }}
+                      />
 
-                  <div className="card-overlay" />
+                      <div className="card-overlay" />
 
-                  <div className="social-links">
-                    <button className="s-link">
-                      <FaLinkedinIn />
-                    </button>
-                    <button className="s-link">
-                      <FaEnvelope />
-                    </button>
-                  </div>
-                </div>
+                      <div className="social-links">
+                        <button className="s-link">
+                          <FaLinkedinIn />
+                        </button>
+                        <button className="s-link">
+                          <FaEnvelope />
+                        </button>
+                      </div>
+                    </div>
 
-                <div className="content-box">
-                  <span className="role-tag">{member.specialization}</span>
+                    <div className="content-box">
+                      <span className="role-tag">{member.specialization}</span>
 
-                  <h3>{member.name}</h3>
+                      <h3>{member.name}</h3>
 
-                  <p>{member.experience} Years Experience</p>
+                      <p>{member.experience} Years Experience</p>
 
-                  <div className="card-footer">
-                    <NavLink to={`/team/${member._id}`}>
-                      <button className="profile-btn">View Full Profile</button>
-                    </NavLink>
-                  </div>
-                </div>
-              </TeamCard>
-            </motion.div>
-          ))}
+                      <div className="card-footer">
+                        <NavLink to={`/team/${member._id}`}>
+                          <button className="profile-btn">
+                            View Full Profile
+                          </button>
+                        </NavLink>
+                      </div>
+                    </div>
+                  </TeamCard>
+                </motion.div>
+              ))}
+            </>
+          ) : (
+            <>
+              {" "}
+              {twoData.map((member, index) => (
+                <motion.div
+                  key={member._id}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    delay: index * 0.15,
+                    duration: 0.6,
+                    ease: "backOut",
+                  }}
+                >
+                  <TeamCard>
+                    <div className="image-wrapper">
+                      <img
+                        src={member.profileImage || "/doctor-placeholder.png"}
+                        alt={member.name}
+                        onError={(e) => {
+                          e.target.src = "/doctor-placeholder.png";
+                        }}
+                      />
+
+                      <div className="card-overlay" />
+
+                      <div className="social-links">
+                        <button className="s-link">
+                          <FaLinkedinIn />
+                        </button>
+                        <button className="s-link">
+                          <FaEnvelope />
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="content-box">
+                      <span className="role-tag">{member.specialization}</span>
+
+                      <h3>{member.name}</h3>
+
+                      <p>{member.experience} Years Experience</p>
+
+                      <div className="card-footer">
+                        <NavLink to={`/team/${member._id}`}>
+                          <button className="profile-btn">
+                            View Full Profile
+                          </button>
+                        </NavLink>
+                      </div>
+                    </div>
+                  </TeamCard>
+                </motion.div>
+              ))}
+            </>
+          )}
         </TeamGrid>
         {!isDoctors && (
           <div className="view-all-container">

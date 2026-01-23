@@ -109,10 +109,13 @@ const DoctorDetailPage = () => {
                 const loadId = toast.loading("Removing Specialist...");
                 try {
                   await deleteDoctor(id).unwrap();
-                  toast.success("Profile deleted", { id: loadId });
+                  toast.success("Profile deleted", {
+                    id: loadId,
+                    duration: 4000,
+                  });
                   navigate("/doctors");
                 } catch (err) {
-                  toast.error("Error occurred", { id: loadId });
+                  toast.error("Error occurred", { id: loadId, duration: 4000 });
                 }
               }}
               style={{

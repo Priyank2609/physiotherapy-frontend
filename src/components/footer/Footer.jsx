@@ -4,11 +4,16 @@ import { FooterSection } from "../../styles/footer";
 import { useGetServicesQuery } from "../../slices/api.slice";
 import { Instagram, MessageCircle, Facebook, Contact } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const Footer = () => {
   const { data } = useGetServicesQuery();
 
   const services = data?.data.slice(0, 4) || [];
+
+  const userInfo = useSelector((state) => state.userInfo.userInfo);
+  const user = userInfo?.user;
+  const isAdmin = user?.role === "Admin";
   // console.log(services);
 
   return (
@@ -113,9 +118,11 @@ const Footer = () => {
           <p>
             © {new Date().getFullYear()} &nbsp;<span>PHYSIOTERAPIA</span>. All
             rights reserved
-            <Link to="/login" className="admin-trigger">
-              .
-            </Link>
+            {!isAdmin && (
+              <Link to="/login" className="admin-trigger">
+                .
+              </Link>
+            )}
           </p>
         </div>
       </div>
