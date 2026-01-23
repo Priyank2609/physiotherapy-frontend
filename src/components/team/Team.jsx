@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { TeamCard, TeamGrid, TeamSection } from "../../styles/team";
 import { FaLinkedinIn, FaTwitter, FaEnvelope } from "react-icons/fa";
 import { useGetDoctersQuery } from "../../slices/api.slice";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { Wrapper } from "../../styles/service-detail";
 
 const Team = () => {
