@@ -52,9 +52,7 @@ const DoctorDetailPage = () => {
 
   useEffect(() => {
     refetch();
-    window.scrollTo(0, 0);
-  }, [refetch]);
-
+  }, []);
   const handleDelete = () => {
     toast.custom(
       (t) => (
@@ -68,12 +66,12 @@ const DoctorDetailPage = () => {
             background: "#ffffff",
             padding: "20px",
             borderRadius: "16px",
-            boxShadow: "0 20px 40px rgba(6, 78, 59, 0.15)",
+            boxShadow: "0 20px 40px rgba(6, 78, 59, 0.15)", // Green tinted shadow
             border: "1px solid #e2e8f0",
             display: "flex",
             flexDirection: "column",
             gap: "12px",
-            pointerEvents: "auto",
+            pointerEvents: "auto", // Required for custom toasts
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
@@ -103,6 +101,7 @@ const DoctorDetailPage = () => {
               </p>
             </div>
           </div>
+
           <div style={{ display: "flex", gap: "10px", marginTop: "8px" }}>
             <button
               onClick={async () => {
@@ -112,12 +111,9 @@ const DoctorDetailPage = () => {
                   await deleteDoctor(id).unwrap();
                   toast.success("Profile deleted", {
                     id: loadId,
+                    duration: 4000,
                   });
-
                   navigate("/doctors");
-                  setTimeout(() => {
-                    toast.dismiss();
-                  }, 4000);
                 } catch (err) {
                   toast.error("Error occurred", { id: loadId, duration: 4000 });
                 }
@@ -132,10 +128,12 @@ const DoctorDetailPage = () => {
                 fontSize: "0.85rem",
                 fontWeight: "700",
                 cursor: "pointer",
+                transition: "0.2s",
               }}
             >
               Confirm Delete
             </button>
+
             <button
               onClick={() => toast.dismiss(t.id)}
               style={{
@@ -155,10 +153,12 @@ const DoctorDetailPage = () => {
           </div>
         </motion.div>
       ),
-      { duration: 6000, position: "bottom-right" },
+      {
+        duration: 6000,
+        position: "bottom-right",
+      },
     );
   };
-
   if (isLoading || isFetching) {
     return (
       <PageWrapper>
@@ -205,13 +205,8 @@ const DoctorDetailPage = () => {
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
           >
-            <NavLink
-              to={"/"}
-              style={{ textDecoration: "none", color: "inherit" }}
-            >
-              Physioterapia Care Center
-            </NavLink>{" "}
-            / <span>Our Team</span>
+            <NavLink to={"/"}>Physioterapia Care Center</NavLink> &nbsp; /
+            &nbsp; <span>Our Team</span>
           </motion.div>
 
           <div className="profile-header">
@@ -252,6 +247,7 @@ const DoctorDetailPage = () => {
               >
                 {doctor.specialization}
               </motion.p>
+
               <div className="qual-list">
                 {doctor.qualifications?.map((q, i) => (
                   <motion.div
@@ -276,9 +272,8 @@ const DoctorDetailPage = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.05 }}
+          viewport={{ once: true, amount: 0.1 }}
         >
-          {/* Clinical Expertise */}
           <motion.section variants={itemVariants}>
             <div className="section-head">
               <UserCheck className="icon-teal" />
@@ -287,20 +282,6 @@ const DoctorDetailPage = () => {
             <p className="bio-paragraph">{doctor.bio}</p>
           </motion.section>
 
-          {/* Clinical Background */}
-          {doctor.clinicalBackground && (
-            <motion.section variants={itemVariants}>
-              <div className="section-head">
-                <Award className="icon-teal" />
-                <h3>Clinical Background</h3>
-              </div>
-              <p className="bio-paragraph" style={{ whiteSpace: "pre-line" }}>
-                {doctor.clinicalBackground}
-              </p>
-            </motion.section>
-          )}
-
-          {/* Conditions Treated */}
           <motion.section variants={itemVariants}>
             <div className="section-head">
               <Stethoscope className="icon-teal" />
@@ -324,7 +305,6 @@ const DoctorDetailPage = () => {
             </div>
           </motion.section>
 
-          {/* Neuro Rehab */}
           <motion.section variants={itemVariants} className="neuro-box">
             <div className="section-head">
               <Brain className="icon-teal" />
@@ -347,8 +327,8 @@ const DoctorDetailPage = () => {
         <Sidebar>
           <motion.div
             className="sticky-card"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
           >
@@ -358,17 +338,17 @@ const DoctorDetailPage = () => {
                 <Calendar size={18} /> <span>Monday - Saturday</span>
               </div>
               <div className="time-row">
-                <Clock size={18} />
+                <Clock size={18} />{" "}
                 <span>
                   {doctor.availability?.hours?.start} AM -{" "}
                   {doctor.availability?.hours?.end} PM
                 </span>
               </div>
               <a
-                href="https://maps.google.com"
+                href="https://www.google.com/maps/dir/23.0424576,72.5123072/Jayanand+Society,+Krishnanagar,+Ahmedabad,+Gujarat+382345/@23.0501634,72.4961221,33758m/data=!3m2!1e3!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x395e86c6a84a28df:0x441608a2f4e58423!2m2!1d72.6447369!2d23.0540154?entry=ttu&g_ep=EgoyMDI2MDEyMC4wIKXMDSoASAFQAw%3D%3D"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ textDecoration: "none" }}
+                className="get-directions"
               >
                 <div className="time-row">
                   <MapPin size={18} />{" "}
@@ -394,11 +374,18 @@ const DoctorDetailPage = () => {
                     className="booking-btn"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    style={{ background: "#064e3b" }}
+                    style={{
+                      background: "#064e3b",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      gap: "10px",
+                    }}
                   >
                     <Edit3 size={18} /> Update Details
                   </motion.button>
                 </NavLink>
+
                 <motion.button
                   className="booking-btn"
                   onClick={handleDelete}
@@ -409,6 +396,11 @@ const DoctorDetailPage = () => {
                     background: "#fff",
                     color: "#dc2626",
                     border: "1px solid #fecaca",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: "10px",
+                    marginTop: 0,
                   }}
                 >
                   {isDeleting ? (
@@ -429,12 +421,12 @@ const DoctorDetailPage = () => {
                   className="booking-btn"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  style={{ background: "#0ea5e9" }}
                 >
                   Book Appointment <ChevronRight size={18} />
                 </motion.button>
               </NavLink>
             )}
+
             <p className="note">
               Personalized recovery plans for every patient.
             </p>
