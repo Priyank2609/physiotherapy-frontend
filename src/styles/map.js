@@ -51,7 +51,7 @@ export const MapWrapper = styled.section`
   .map-box {
     width: 100%;
     height: 100%;
-    
+
     iframe {
       width: 100%;
       height: 100%;
@@ -95,6 +95,9 @@ export const MapWrapper = styled.section`
         font-size: 14px;
         color: #4b5563;
         line-height: 1.5;
+      }
+      a {
+        color: #4b5563;
       }
     }
 

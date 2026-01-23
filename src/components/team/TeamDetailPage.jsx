@@ -342,8 +342,15 @@ const DoctorDetailPage = () => {
                 </span>
               </div>
               <div className="time-row">
-                <MapPin size={18} />{" "}
-                <span>Visiting & Clinical Consultation</span>
+                <a
+                  href="https://www.google.com/maps/dir/23.0424576,72.5123072/Jayanand+Society,+Krishnanagar,+Ahmedabad,+Gujarat+382345/@23.0501634,72.4961221,33758m/data=!3m2!1e3!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x395e86c6a84a28df:0x441608a2f4e58423!2m2!1d72.6447369!2d23.0540154?entry=ttu&g_ep=EgoyMDI2MDEyMC4wIKXMDSoASAFQAw%3D%3D"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="get-directions"
+                >
+                  <MapPin size={18} />{" "}
+                  <span>Visiting & Clinical Consultation</span>
+                </a>
               </div>
             </div>
 

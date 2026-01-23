@@ -185,7 +185,9 @@ export const ContactWrapper = styled.section`
     border-radius: 24px;
     color: white;
     height: auto; /* Allow content to dictate height on mobile */
-
+    a {
+      color: white;
+    }
     @media (min-width: 768px) {
       padding: 60px 50px;
       border-radius: 32px;
