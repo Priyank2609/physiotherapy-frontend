@@ -60,7 +60,8 @@ const Footer = () => {
           <div>
             <h4 className="footer-title">Contact Us</h4>
             <div className="contact-item">
-              <span>Phone:</span> +91 84607 92897
+              <span>Phone:</span>{" "}
+              <a href="tel:+918460792897">+91 84607 92897</a>
             </div>
             <div className="contact-item">
               <span>Email:</span>{" "}
@@ -69,7 +70,15 @@ const Footer = () => {
               </a>
             </div>
             <div className="contact-item">
-              <span>Location:</span> Ahmedabad, Gujarat
+              <span>Location:</span>
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=39,+Jayanand+Society,+Near+Priya+Cinema,+Krishna+Nagar,+Ahmedabad,+Gujarat+382345"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="get-directions"
+              >
+                39, Jayanand Society, Ahmedabad
+              </a>
             </div>
 
             <div className="socials">

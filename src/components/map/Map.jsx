@@ -69,7 +69,7 @@ const MapSection = () => {
               <div>
                 <h4>Contact Info</h4>
                 <p>
-                  Call: +91 84607 92897
+                  <a href="tel:+918460792897">+91 84607 92897</a>
                   <br />
                   <a href="mailto:physioterepia1309@gmail.com">
                     physioterepia1309@gmail.com
