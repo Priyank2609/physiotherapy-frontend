@@ -52,7 +52,7 @@ export const HeroSection = styled.section`
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
       border: 4px solid white;
       @media (max-width: 480px) {
-        width: 100%;
+        width: 300px;
         height: 380px;
       }
     }
