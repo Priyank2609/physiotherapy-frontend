@@ -33,7 +33,6 @@ const EditService = () => {
     },
   });
 
-  /* ------------------ FIELD ARRAYS ------------------ */
   const {
     fields: benefitFields,
     append: addBenefit,
@@ -52,7 +51,6 @@ const EditService = () => {
     name: "treatments",
   });
 
-  /* ------------------ PREFILL DATA ------------------ */
   useEffect(() => {
     if (service) {
       reset({
@@ -71,21 +69,18 @@ const EditService = () => {
     }
   }, [service, reset]);
 
-  /* ------------------ SUBMIT ------------------ */
   const onSubmit = async (data) => {
     const toastId = toast.loading("Updating service...");
 
     try {
       const formData = new FormData();
 
-      // TEXT FIELDS
       formData.append("title", data.title);
       formData.append("shortDescription", data.shortDescription);
       formData.append("longDescription", data.longDescription);
       formData.append("price", Number(data.price));
       formData.append("duration", Number(data.duration));
 
-      // ARRAYS (IMPORTANT)
       if (data.benefits?.length) {
         formData.append(
           "benefits",
@@ -100,7 +95,6 @@ const EditService = () => {
         );
       }
 
-      // IMAGES
       if (data.mainImage?.[0]) {
         formData.append("mainImage", data.mainImage[0]);
       }
@@ -108,11 +102,6 @@ const EditService = () => {
       if (data.secondaryImage?.[0]) {
         formData.append("secondaryImage", data.secondaryImage[0]);
       }
-
-      // DEBUG (optional)
-      // for (let pair of formData.entries()) {
-      //   console.log(pair[0], pair[1]);
-      // }
 
       await updateService({ id, data: formData }).unwrap();
       toast.success("Service updated successfully", { id: toastId });
@@ -170,7 +159,6 @@ const EditService = () => {
           {...register("duration")}
         />
 
-        {/* BENEFITS */}
         <h4>Benefits</h4>
         {benefitFields.map((field, index) => (
           <div key={field.id} style={{ display: "flex", gap: "8px" }}>
@@ -188,7 +176,6 @@ const EditService = () => {
           <Plus size={16} /> Add Benefit
         </button>
 
-        {/* TREATMENTS */}
         <h4>Treatments Included</h4>
         {treatmentFields.map((field, index) => (
           <div key={field.id} style={{ display: "flex", gap: "8px" }}>
@@ -206,7 +193,6 @@ const EditService = () => {
           <Plus size={16} /> Add Treatment
         </button>
 
-        {/* IMAGES */}
         <FileGroup>
           <label>Main Image</label>
           <input type="file" accept="image/*" {...register("mainImage")} />

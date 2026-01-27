@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { ServiceDetailWrapper, Wrapper } from "../../styles/service-detail";
 import { NavLink, useParams } from "react-router-dom";
@@ -20,7 +20,7 @@ const itemVariants = {
 
 const ServiceDetail = () => {
   const { id } = useParams();
-  const { data, isLoading, isError } = useGetServiceByIdQuery(id);
+  const { data, isLoading, isError, refetch } = useGetServiceByIdQuery(id);
   const service = data?.data;
   // console.log(service);
   const userInfo = useSelector((state) => state.userInfo.userInfo);
@@ -36,7 +36,9 @@ const ServiceDetail = () => {
       ? service.treatments
       : service.treatments.split(",").map((i) => i.trim())
     : [];
-
+  useEffect(() => {
+    refetch();
+  }, []);
   const handleDelete = () => {
     toast.custom(
       (t) => (
