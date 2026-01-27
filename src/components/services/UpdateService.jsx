@@ -1,21 +1,13 @@
 import React, { useEffect } from "react";
-import { useForm, useFieldArray, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
-import { Plus, Trash2, ArrowLeft, Save } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 import { useGetServiceByIdQuery } from "../../slices/api.slice";
 import { useUpdateServiceMutation } from "../../slices/form.slice";
 
-import {
-  EditServiceContainer,
-  Title,
-  Form,
-  Input,
-  TextArea,
-  FileGroup,
-  SaveButton,
-} from "../../styles/update-service";
+import { NewService } from "../../styles/create-service"; // reuse the same style as CreateService
 
 const EditService = () => {
   const { id } = useParams();
@@ -26,37 +18,13 @@ const EditService = () => {
 
   const service = data?.data;
 
-  const { register, handleSubmit, control, reset, watch } = useForm({
-    defaultValues: {
-      title: "",
-      shortDescription: "",
-      longDescription: "",
-      price: "",
-      duration: "",
-      benefits: [],
-      treatments: [],
-      mainImage: null,
-      secondaryImage: null,
-    },
-  });
-
   const {
-    fields: benefitFields,
-    append: addBenefit,
-    remove: removeBenefit,
-  } = useFieldArray({
-    control,
-    name: "benefits",
-  });
-
-  const {
-    fields: treatmentFields,
-    append: addTreatment,
-    remove: removeTreatment,
-  } = useFieldArray({
-    control,
-    name: "treatments",
-  });
+    register,
+    handleSubmit,
+    reset,
+    watch,
+    formState: { errors },
+  } = useForm();
 
   const watchedMainImage = watch("mainImage");
   const watchedSecondaryImage = watch("secondaryImage");
@@ -70,56 +38,68 @@ const EditService = () => {
         price: service.price || "",
         duration: service.duration || "",
         benefits: Array.isArray(service.benefits)
-          ? service.benefits.map((b) => ({ value: b }))
-          : [],
+          ? service.benefits.join(", ")
+          : service.benefits || "",
         treatments: Array.isArray(service.treatments)
-          ? service.treatments.map((t) => ({ value: t }))
-          : [],
+          ? service.treatments.join(", ")
+          : service.treatments || "",
         mainImage: null,
         secondaryImage: null,
       });
     }
   }, [service, reset]);
 
-  const onSubmit = async (data) => {
-    const toastId = toast.loading("Updating service...");
+  const handleUpdate = async (data) => {
+    const loadingToast = toast.loading("Updating service...");
+
+    if (!data.mainImage && !service.mainImage) {
+      toast.error("Please select main image", { id: loadingToast });
+      return;
+    }
+    if (!data.secondaryImage && !service.secondaryImage) {
+      toast.error("Please select secondary image", { id: loadingToast });
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("title", data.title);
+    formData.append("shortDescription", data.shortDescription);
+    formData.append("longDescription", data.longDescription);
+    formData.append("price", data.price);
+    formData.append("duration", data.duration);
+
+    // Benefits
+    const benefitsArray = data.benefits
+      .split(",")
+      .map((b) => b.trim())
+      .filter((b) => b !== "");
+    if (benefitsArray.length === 0) {
+      toast.error("Benefits must contain at least one item", {
+        id: loadingToast,
+      });
+      return;
+    }
+    formData.append("benefits", JSON.stringify(benefitsArray));
+
+    // Treatments
+    const treatmentsArray = data.treatments
+      ? data.treatments
+          .split(",")
+          .map((t) => t.trim())
+          .filter((t) => t !== "")
+      : [];
+    formData.append("treatments", JSON.stringify(treatmentsArray));
+
+    if (data.mainImage?.[0]) formData.append("mainImage", data.mainImage[0]);
+    if (data.secondaryImage?.[0])
+      formData.append("secondaryImage", data.secondaryImage[0]);
 
     try {
-      const formData = new FormData();
-
-      formData.append("title", data.title);
-      formData.append("shortDescription", data.shortDescription);
-      formData.append("longDescription", data.longDescription);
-      formData.append("price", Number(data.price));
-      formData.append("duration", Number(data.duration));
-
-      if (data.benefits?.length) {
-        formData.append(
-          "benefits",
-          JSON.stringify(data.benefits.map((b) => b.value)),
-        );
-      }
-
-      if (data.treatments?.length) {
-        formData.append(
-          "treatments",
-          JSON.stringify(data.treatments.map((t) => t.value)),
-        );
-      }
-
-      if (data.mainImage?.[0]) {
-        formData.append("mainImage", data.mainImage[0]);
-      }
-
-      if (data.secondaryImage?.[0]) {
-        formData.append("secondaryImage", data.secondaryImage[0]);
-      }
-
       await updateService({ id, data: formData }).unwrap();
-      toast.success("Service updated successfully", { id: toastId });
+      toast.success("Service updated successfully", { id: loadingToast });
       navigate(`/services/${id}`);
     } catch (err) {
-      toast.error(err?.data?.message || "Update failed", { id: toastId });
+      toast.error(err?.data?.message || "Update failed", { id: loadingToast });
     }
   };
 
@@ -128,101 +108,139 @@ const EditService = () => {
   }
 
   return (
-    <EditServiceContainer>
-      <button
-        onClick={() => navigate(-1)}
-        style={{
-          background: "none",
-          border: "none",
-          display: "flex",
-          gap: "8px",
-          color: "#64748b",
-          fontWeight: "600",
-          cursor: "pointer",
-          marginBottom: "16px",
-        }}
-      >
-        <ArrowLeft size={18} /> Back
-      </button>
+    <NewService>
+      <section className="create-service">
+        <div className="service-form-container">
+          <button
+            onClick={() => navigate(-1)}
+            style={{
+              background: "none",
+              border: "none",
+              display: "flex",
+              gap: "8px",
+              color: "#64748b",
+              fontWeight: "600",
+              cursor: "pointer",
+              marginBottom: "16px",
+            }}
+          >
+            <ArrowLeft size={18} /> Back
+          </button>
 
-      <Title>Edit Service</Title>
+          <h2>Edit Service</h2>
+          <p>Update physiotherapy service details</p>
 
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <Input placeholder="Service Title" {...register("title")} />
+          <form className="service-form" onSubmit={handleSubmit(handleUpdate)}>
+            <div className="form-group">
+              <label>Service Title</label>
+              <input
+                type="text"
+                placeholder="Enter service title"
+                {...register("title", { required: "Title is required" })}
+              />
+              {errors.title && <p className="error">{errors.title.message}</p>}
+            </div>
 
-        <Input
-          placeholder="Short Description"
-          {...register("shortDescription")}
-        />
+            <div className="form-group">
+              <label>Short Description</label>
+              <textarea
+                placeholder="Enter short description"
+                {...register("shortDescription", {
+                  required: "Short description is required",
+                })}
+              />
+              {errors.shortDescription && (
+                <p className="error">{errors.shortDescription.message}</p>
+              )}
+            </div>
 
-        <TextArea
-          rows={4}
-          placeholder="Long Description"
-          {...register("longDescription")}
-        />
+            <div className="form-group">
+              <label>Long Description</label>
+              <textarea
+                placeholder="Enter detailed description"
+                {...register("longDescription", {
+                  required: "Long description is required",
+                })}
+              />
+              {errors.longDescription && (
+                <p className="error">{errors.longDescription.message}</p>
+              )}
+            </div>
 
-        <Input type="number" placeholder="Price" {...register("price")} />
+            <div className="form-group">
+              <label>Benefits</label>
+              <input
+                type="text"
+                placeholder="Eg: Pain relief, Better mobility"
+                {...register("benefits", { required: "Benefits are required" })}
+              />
+              {errors.benefits && (
+                <p className="error">{errors.benefits.message}</p>
+              )}
+              <small>Separate benefits using commas</small>
+            </div>
 
-        <Input
-          type="number"
-          placeholder="Duration (mins)"
-          {...register("duration")}
-        />
+            <div className="form-group">
+              <label>Treatments</label>
+              <input
+                type="text"
+                placeholder="Eg: Exercise, Massage"
+                {...register("treatments")}
+              />
+              <small>Separate treatments using commas (optional)</small>
+            </div>
 
-        <h4>Benefits</h4>
-        {benefitFields.map((field, index) => (
-          <div key={field.id} style={{ display: "flex", gap: "8px" }}>
-            <Input
-              placeholder="Benefit"
-              {...register(`benefits.${index}.value`)}
-            />
-            <button type="button" onClick={() => removeBenefit(index)}>
-              <Trash2 size={18} />
+            <div className="form-row">
+              <div className="form-group">
+                <label>Duration (minutes)</label>
+                <input
+                  type="number"
+                  placeholder="Eg: 45"
+                  {...register("duration", {
+                    required: "Duration is required",
+                  })}
+                />
+                {errors.duration && (
+                  <p className="error">{errors.duration.message}</p>
+                )}
+              </div>
+
+              <div className="form-group">
+                <label>Price (₹)</label>
+                <input
+                  type="number"
+                  placeholder="Eg: 500"
+                  {...register("price", { required: "Price is required" })}
+                />
+                {errors.price && (
+                  <p className="error">{errors.price.message}</p>
+                )}
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label>Main Image</label>
+              <input type="file" {...register("mainImage")} />
+              {watchedMainImage?.[0] && (
+                <p>Selected: {watchedMainImage[0].name}</p>
+              )}
+            </div>
+
+            <div className="form-group">
+              <label>Secondary Image</label>
+              <input type="file" {...register("secondaryImage")} />
+              {watchedSecondaryImage?.[0] && (
+                <p>Selected: {watchedSecondaryImage[0].name}</p>
+              )}
+            </div>
+
+            <button type="submit" className="submit-btn" disabled={updating}>
+              {updating ? "Updating..." : "Update Service"}
             </button>
-          </div>
-        ))}
-
-        <button type="button" onClick={() => addBenefit({ value: "" })}>
-          <Plus size={16} /> Add Benefit
-        </button>
-
-        <h4>Treatments Included</h4>
-        {treatmentFields.map((field, index) => (
-          <div key={field.id} style={{ display: "flex", gap: "8px" }}>
-            <Input
-              placeholder="Treatment"
-              {...register(`treatments.${index}.value`)}
-            />
-            <button type="button" onClick={() => removeTreatment(index)}>
-              <Trash2 size={18} />
-            </button>
-          </div>
-        ))}
-
-        <button type="button" onClick={() => addTreatment({ value: "" })}>
-          <Plus size={16} /> Add Treatment
-        </button>
-
-        <FileGroup>
-          <label>Main Image</label>
-          <input type="file" accept="image/*" {...register("mainImage")} />
-          {watchedMainImage?.[0] && <p>Selected: {watchedMainImage[0].name}</p>}
-        </FileGroup>
-
-        <FileGroup>
-          <label>Secondary Image</label>
-          <input type="file" accept="image/*" {...register("secondaryImage")} />
-          {watchedSecondaryImage?.[0] && (
-            <p>Selected: {watchedSecondaryImage[0].name}</p>
-          )}
-        </FileGroup>
-
-        <SaveButton type="submit" disabled={updating}>
-          <Save size={18} />
-          {updating ? " Updating..." : " Save Changes"}
-        </SaveButton>
-      </Form>
-    </EditServiceContainer>
+          </form>
+        </div>
+      </section>
+    </NewService>
   );
 };
 
