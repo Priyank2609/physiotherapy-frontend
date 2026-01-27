@@ -34,17 +34,22 @@ const Dashboard = () => {
     data,
     isLoading: loadServices,
     isError: errServices,
-  } = useGetTotalServivesQuery();
+  } = useGetTotalServivesQuery(undefined, { pollingInterval: 10000 }); // every 30s
+
   const {
     data: today,
     isLoading: loadToday,
     isError: errToday,
-  } = useGetTodayAppointmentQuery();
+  } = useGetTodayAppointmentQuery(undefined, { pollingInterval: 10000 });
+
   const { data: pending, isLoading: loadPending } =
-    useGetPendingAppointmentQuery();
+    useGetPendingAppointmentQuery(undefined, { pollingInterval: 10000 });
   const { data: upcoming, isLoading: loadUpcoming } =
-    useGetUpcomingAppointmentQuery();
-  const { data: enquiry, isLoading: loadEnquiry } = useGetEnquiriesQuery();
+    useGetUpcomingAppointmentQuery(undefined, { pollingInterval: 10000 });
+  const { data: enquiry, isLoading: loadEnquiry } = useGetEnquiriesQuery(
+    undefined,
+    { pollingInterval: 30000 },
+  );
   // console.log(enquiry);
   const isGlobalLoading =
     loadServices || loadToday || loadPending || loadUpcoming || loadEnquiry;
