@@ -199,15 +199,21 @@ const Dashboard = () => {
             </SectionHeader>
 
             {enquiries.length > 0 ? (
-              <EnquiryList>
-                {enquiries.map((enq) => (
-                  <EnquiryItem key={enq._id}>
-                    <h4>{enq.name}</h4>
-                    <p>{enq.message}</p>
-                    <span>{enq.relativeDate}</span>
-                  </EnquiryItem>
-                ))}
-              </EnquiryList>
+              <>
+                <EnquiryList>
+                  {enquiries.map((enq) => (
+                    <EnquiryItem key={enq._id}>
+                      <h4>{enq.name}</h4>
+                      <p>{enq.message}</p>
+                      <span>{enq.relativeDate}</span>
+                    </EnquiryItem>
+                  ))}
+                </EnquiryList>
+
+                <NavLink to={"/admin/enquiries"}>
+                  <Button $full>View All Enquiries</Button>
+                </NavLink>
+              </>
             ) : (
               <p
                 style={{ textAlign: "center", color: "#666", margin: "1rem 0" }}
@@ -215,10 +221,6 @@ const Dashboard = () => {
                 No enquiries yet.
               </p>
             )}
-
-            <NavLink to={"/admin/enquiries"}>
-              <Button $full>View All Enquiries</Button>
-            </NavLink>
           </Section>
         </GridTwo>
       </DashboardWrapper>
