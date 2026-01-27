@@ -1,114 +1,117 @@
 import styled from "styled-components";
 
-export const NewService = styled.div`
-  .create-service {
-    min-height: 100vh;
-    background: #f1f5f9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 20px;
-  }
+export const NewServiceWrapper = styled.div`
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 32px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
 
-  .service-form-container {
-    width: 100%;
-    max-width: 600px;
-    background: #ffffff;
-    border-radius: 20px;
-    padding: 35px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-  }
-
-  .service-form-container h2 {
-    font-size: 26px;
-    font-weight: 800;
-    color: #0b5d3b;
-    margin-bottom: 6px;
-  }
-
-  .service-form-container p {
-    font-size: 14px;
-    color: #64748b;
-    margin-bottom: 30px;
-  }
-
-  .service-form {
+  .form-card {
     display: flex;
     flex-direction: column;
-    gap: 18px;
-  }
+    gap: 16px;
 
-  .form-group {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .form-group label {
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 6px;
-    color: #334155;
-  }
-
-  .form-group input,
-  .form-group textarea {
-    padding: 12px 14px;
-    font-size: 14px;
-    border-radius: 10px;
-    border: 1px solid #cbd5f5;
-    outline: none;
-  }
-
-  .form-group textarea {
-    resize: none;
-    height: 90px;
-  }
-
-  .form-group small {
-    font-size: 12px;
-    color: #64748b;
-    margin-top: 4px;
-  }
-
-  .form-row {
-    display: flex;
-    gap: 15px;
-  }
-
-  .form-row .form-group {
-    flex: 1;
-  }
-
-  .form-group.checkbox {
-    flex-direction: row;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .submit-btn {
-    margin-top: 10px;
-    padding: 14px;
-    font-size: 15px;
-    font-weight: 700;
-    background: #0b5d3b;
-    color: #ffffff;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-
-  .submit-btn:hover {
-    background: #094c30;
-  }
-
-  @media (max-width: 600px) {
-    .service-form-container {
-      padding: 25px;
+    h2 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #0f172a;
     }
 
-    .form-row {
+    p {
+      color: #64748b;
+      margin-bottom: 20px;
+    }
+
+    .service-form {
+      display: flex;
       flex-direction: column;
+      gap: 16px;
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+
+        label {
+          font-weight: 600;
+          color: #334155;
+        }
+
+        input,
+        textarea {
+          padding: 12px;
+          border-radius: 10px;
+          border: 1px solid #e2e8f0;
+          background: #f8fafc;
+          font-size: 14px;
+        }
+
+        .error {
+          color: #ef4444;
+          font-size: 13px;
+        }
+      }
+
+      .form-section {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        h3 {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          color: #0f172a;
+        }
+
+        .dynamic-item {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+
+          input {
+            flex: 1;
+          }
+
+          button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #ef4444;
+          }
+        }
+
+        .add-btn {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          padding: 6px 10px;
+          border: 1px dashed #2563eb;
+          border-radius: 10px;
+          color: #2563eb;
+          background: #f0f9ff;
+          cursor: pointer;
+          font-weight: 600;
+          width: fit-content;
+        }
+      }
+
+      .submit-btn {
+        margin-top: 24px;
+        padding: 14px 22px;
+        background: linear-gradient(135deg, #2563eb, #1e40af);
+        color: #fff;
+        border: none;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+      }
     }
   }
 `;
