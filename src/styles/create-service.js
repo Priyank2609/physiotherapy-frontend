@@ -111,4 +111,32 @@ export const NewService = styled.div`
       flex-direction: column;
     }
   }
+  /* Error message styles */
+  .error {
+    color: #dc2626; /* Red color */
+    font-size: 0.875rem; /* Small font */
+    margin-top: 4px;
+  }
+
+  /* Optional: highlight the input border on error */
+  .form-group input:invalid,
+  .form-group textarea:invalid {
+    border: 1px solid #dc2626;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    border: 1px solid #cbd5e1; /* default border */
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 1rem;
+    width: 100%;
+    transition: border 0.2s;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border: 1px solid #3b82f6; /* blue focus */
+    outline: none;
+  }
 `;
