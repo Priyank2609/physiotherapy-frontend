@@ -114,7 +114,7 @@ const EditService = () => {
       //   console.log(pair[0], pair[1]);
       // }
 
-      await updateService({ id, formData }).unwrap();
+      await updateService({ id, data: formData }).unwrap();
       toast.success("Service updated successfully", { id: toastId });
       navigate(`/services/${id}`);
     } catch (err) {
