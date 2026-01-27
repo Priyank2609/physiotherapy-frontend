@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ServiceDetailWrapper, Wrapper } from "../../styles/service-detail";
 import { NavLink, useParams } from "react-router-dom";
 import { useGetServiceByIdQuery } from "../../slices/api.slice";
+import { useSelector } from "react-redux";
 
 const staggerContainer = {
   hidden: { opacity: 0 },
