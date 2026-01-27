@@ -19,7 +19,7 @@ export const baseQueryWithAutoLogout = async (args, api, extraOptions) => {
   });
 
   // ────────────────────────────────────────────────
-  // Most reliable way to detect auth errors
+
   const isAuthError =
     result.error &&
     (result.error.status === 401 ||

@@ -19,15 +19,7 @@ function App() {
         <main className="app-content">
           <Outlet />
         </main>
-        <button
-          onClick={() => {
-            localStorage.removeItem("userInfo");
-            api.dispatch(logout());
-            window.location.href = "/";
-          }}
-        >
-          Force Logout & Clear
-        </button>
+
         <Footer />
       </div>
     </>
