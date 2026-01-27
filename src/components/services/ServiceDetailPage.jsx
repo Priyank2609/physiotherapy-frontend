@@ -6,6 +6,7 @@ import { useGetServiceByIdQuery } from "../../slices/api.slice";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import { Trash2 } from "lucide-react";
+import { useDeleteServiceMutation } from "../../slices/form.slice";
 
 const staggerContainer = {
   hidden: { opacity: 0 },
