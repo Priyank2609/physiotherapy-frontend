@@ -7,15 +7,15 @@ const rawBaseQuery = fetchBaseQuery({
 });
 
 export const baseQueryWithAutoLogout = async (args, api, extraOptions) => {
+  console.log("🔥 baseQuery called", args);
+
   const result = await rawBaseQuery(args, api, extraOptions);
+
+  console.log("❌ error:", result?.error);
 
   if (result?.error && [401, 403].includes(result.error.status)) {
     api.dispatch(logout());
-
-    // clear stored user info
     localStorage.removeItem("userinfo");
-
-    // redirect
     window.location.replace("/login");
   }
 
