@@ -85,6 +85,12 @@ export const formSlice = createApi({
         body: { isApproved },
       }),
     }),
+    deleteReview: builder.mutation({
+      query: (id) => ({
+        url: `reviews/delete/${id}`,
+        method: "DELETE",
+      }),
+    }),
     deleteDoctor: builder.mutation({
       query: (id) => ({
         url: `doctors/del/${id}`,
@@ -144,4 +150,5 @@ export const {
   useUpdateBlogMutation,
   useUpdateServiceMutation,
   useDeleteServiceMutation,
+  useDeleteReviewMutation,
 } = formSlice;

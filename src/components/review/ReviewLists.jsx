@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Check, X, Star, User } from "lucide-react";
 import toast from "react-hot-toast";
+import { Trash2 } from "lucide-react";
+import { motion } from "framer-motion";
 import {
   StatusBadge,
   ActionGroup,
@@ -8,7 +10,10 @@ import {
   Container,
   ContactWrapper,
 } from "../../styles/review-lists";
-import { useUpdateReviewMutation } from "../../slices/form.slice";
+import {
+  useDeleteReviewMutation,
+  useUpdateReviewMutation,
+} from "../../slices/form.slice";
 import { useGetAdminReviewsQuery } from "../../slices/api.slice";
 
 const AdminReviews = () => {
@@ -19,6 +24,7 @@ const AdminReviews = () => {
     refetch,
   } = useGetAdminReviewsQuery();
   const [updateStatus, { isLoading: isUpdating }] = useUpdateReviewMutation();
+  const [deleteReview] = useDeleteReviewMutation();
 
   const [processingId, setProcessingId] = useState(null);
   const reviewsList = reviews?.reviews || [];
@@ -39,6 +45,114 @@ const AdminReviews = () => {
       setProcessingId(null);
     }
   };
+
+  const handleDeleteReview = (reviewId) => {
+    toast.custom(
+      (t) => (
+        <motion.div
+          initial={{ opacity: 0, y: 50, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.95 }}
+          style={{
+            maxWidth: "350px",
+            width: "100%",
+            background: "#ffffff",
+            padding: "20px",
+            borderRadius: "16px",
+            boxShadow: "0 20px 40px rgba(6, 78, 59, 0.15)",
+            border: "1px solid #e2e8f0",
+            display: "flex",
+            flexDirection: "column",
+            gap: "12px",
+            pointerEvents: "auto",
+          }}
+        >
+          {/* Header */}
+          <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+            <div
+              style={{
+                background: "#fef2f2",
+                padding: "8px",
+                borderRadius: "10px",
+                color: "#ef4444",
+              }}
+            >
+              <Trash2 size={20} />
+            </div>
+
+            <div>
+              <h4
+                style={{
+                  margin: 0,
+                  color: "#064e3b",
+                  fontSize: "1rem",
+                  fontWeight: "700",
+                }}
+              >
+                Delete Review?
+              </h4>
+              <p style={{ margin: 0, color: "#64748b", fontSize: "0.85rem" }}>
+                This review will be permanently removed.
+              </p>
+            </div>
+          </div>
+
+          {/* Actions */}
+          <div style={{ display: "flex", gap: "10px", marginTop: "8px" }}>
+            <button
+              onClick={async () => {
+                toast.dismiss(t.id);
+                const loadId = toast.loading("Deleting review...");
+
+                try {
+                  await deleteReview(reviewId).unwrap();
+                  toast.success("Review deleted successfully", { id: loadId });
+                  refetch();
+                } catch (err) {
+                  toast.error(
+                    err?.error?.message || "Failed to delete review",
+                    { id: loadId, duration: 4000 },
+                  );
+                }
+              }}
+              style={{
+                flex: 1,
+                background: "#ef4444",
+                color: "white",
+                border: "none",
+                padding: "10px",
+                borderRadius: "10px",
+                fontSize: "0.85rem",
+                fontWeight: "700",
+                cursor: "pointer",
+              }}
+            >
+              Confirm Delete
+            </button>
+
+            <button
+              onClick={() => toast.dismiss(t.id)}
+              style={{
+                flex: 1,
+                background: "#f8fafc",
+                color: "#64748b",
+                border: "1px solid #e2e8f0",
+                padding: "10px",
+                borderRadius: "10px",
+                fontSize: "0.85rem",
+                fontWeight: "600",
+                cursor: "pointer",
+              }}
+            >
+              Cancel
+            </button>
+          </div>
+        </motion.div>
+      ),
+      { duration: 6000, position: "bottom-right" },
+    );
+  };
+
   if (isLoading) {
     return (
       <ContactWrapper>
@@ -157,6 +271,12 @@ const AdminReviews = () => {
                         }
                       >
                         <X size={16} /> Hide
+                      </button>
+                      <button
+                        className="delete"
+                        onClick={() => handleDeleteReview(review._id)}
+                      >
+                        <Trash2 size={16} /> Delete
                       </button>
                     </ActionGroup>
                   </div>
