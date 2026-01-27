@@ -11,7 +11,6 @@ function CreateService() {
     register,
     handleSubmit,
     control,
-    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -83,6 +82,7 @@ function CreateService() {
         <p>Add physiotherapy service details</p>
 
         <form onSubmit={handleSubmit(handleService)} className="service-form">
+          {/* TITLE */}
           <div className="form-group">
             <label>Service Title</label>
             <input
@@ -92,6 +92,7 @@ function CreateService() {
             {errors.title && <p className="error">{errors.title.message}</p>}
           </div>
 
+          {/* SHORT DESCRIPTION */}
           <div className="form-group">
             <label>Short Description</label>
             <textarea
@@ -105,6 +106,7 @@ function CreateService() {
             )}
           </div>
 
+          {/* LONG DESCRIPTION */}
           <div className="form-group">
             <label>Long Description</label>
             <textarea
@@ -129,12 +131,20 @@ function CreateService() {
                     required: "Benefit cannot be empty",
                   })}
                 />
-                <button type="button" onClick={() => removeBenefit(index)}>
+                <button
+                  type="button"
+                  className="remove-btn"
+                  onClick={() => removeBenefit(index)}
+                >
                   <Trash2 size={16} />
                 </button>
               </div>
             ))}
-            <button type="button" onClick={() => addBenefit({ value: "" })}>
+            <button
+              type="button"
+              className="add-btn"
+              onClick={() => addBenefit({ value: "" })}
+            >
               <Plus size={16} /> Add Benefit
             </button>
           </div>
@@ -148,12 +158,20 @@ function CreateService() {
                   placeholder="Treatment"
                   {...register(`treatments.${index}.value`)}
                 />
-                <button type="button" onClick={() => removeTreatment(index)}>
+                <button
+                  type="button"
+                  className="remove-btn"
+                  onClick={() => removeTreatment(index)}
+                >
                   <Trash2 size={16} />
                 </button>
               </div>
             ))}
-            <button type="button" onClick={() => addTreatment({ value: "" })}>
+            <button
+              type="button"
+              className="add-btn"
+              onClick={() => addTreatment({ value: "" })}
+            >
               <Plus size={16} /> Add Treatment
             </button>
           </div>
@@ -169,6 +187,7 @@ function CreateService() {
             <input type="file" {...register("secondaryImage")} />
           </div>
 
+          {/* SUBMIT BUTTON */}
           <button type="submit" className="submit-btn" disabled={isLoading}>
             {isLoading ? (
               "Creating..."

@@ -146,24 +146,24 @@ export const NewServiceWrapper = styled.div`
         }
 
         .add-btn {
-          background: rgba(6, 78, 59, 0.03);
+          background: rgba(6, 78, 59, 0.05);
           color: #064e3b;
           border: 2px dashed #064e3b;
-          padding: 14px;
-          border-radius: 16px;
+          padding: 12px 20px; /* vertical | horizontal padding */
+          border-radius: 20px;
           font-weight: 700;
-          font-size: 0.95rem;
+          font-size: 1rem; /* slightly bigger font */
           cursor: pointer;
-          width: fit-content;
-          display: flex;
+          display: inline-flex;
           align-items: center;
-          gap: 6px;
+          gap: 8px;
           transition: all 0.2s ease;
+          min-width: 140px; /* ensures button is always visible */
+          justify-content: center;
+        }
 
-          &:active {
-            transform: scale(0.97);
-            background: rgba(6, 78, 59, 0.08);
-          }
+        .add-btn:hover {
+          background: rgba(6, 78, 59, 0.12);
         }
       }
 
