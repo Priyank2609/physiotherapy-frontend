@@ -105,7 +105,7 @@ const ServiceDetail = () => {
                   await deleteService(service._id).unwrap();
 
                   toast.success("Service deleted successfully", { id: loadId });
-                  navigate("/admin/services");
+                  navigate("/admin/service");
 
                   setTimeout(() => {
                     toast.dismiss();
