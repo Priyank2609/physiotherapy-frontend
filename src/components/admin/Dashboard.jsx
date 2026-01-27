@@ -34,7 +34,7 @@ const Dashboard = () => {
     data,
     isLoading: loadServices,
     isError: errServices,
-  } = useGetTotalServivesQuery(undefined, { pollingInterval: 10000 }); // every 30s
+  } = useGetTotalServivesQuery(undefined, { pollingInterval: 10000 });
 
   const {
     data: today,
