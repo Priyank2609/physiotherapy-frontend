@@ -249,14 +249,7 @@ export const StatusBadge = styled.span`
 export const ActionGroup = styled.div`
   display: flex;
   gap: 10px;
-
-  @media (max-width: 768px) {
-    width: 100%;
-    button {
-      flex: 1;
-      height: 45px;
-    }
-  }
+  flex-wrap: wrap; /* allows wrapping on small screens */
 
   button {
     display: flex;
@@ -270,10 +263,12 @@ export const ActionGroup = styled.div`
     cursor: pointer;
     transition: 0.2s;
     border: none;
+    min-height: 42px;
 
     &.approve {
       background: #064e3b;
       color: white;
+
       &:disabled {
         background: #e2e8f0;
         color: #94a3b8;
@@ -284,14 +279,32 @@ export const ActionGroup = styled.div`
       background: #ffffff;
       color: #ef4444;
       border: 1px solid #fee2e2;
+
       &:disabled {
         opacity: 0.5;
         cursor: not-allowed;
       }
     }
 
+    &.delete {
+      background: #fee2e2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+    }
+
     &:active {
       transform: scale(0.96);
+    }
+  }
+
+  /* 📱 MOBILE OPTIMIZATION */
+  @media (max-width: 768px) {
+    width: 100%;
+
+    button {
+      flex: 1 1 100%; /* full-width buttons */
+      height: 45px;
+      font-size: 0.9rem;
     }
   }
 `;
