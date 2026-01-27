@@ -12,10 +12,13 @@ export const baseQueryWithAutoLogout = async (args, api, extraOptions) => {
   const result = await rawBaseQuery(args, api, extraOptions);
 
   console.log("❌ error:", result?.error);
+  console.log("❌ result:", result);
 
-  if (result?.error && [401, 403].includes(result.error.status)) {
-    api.dispatch(logout());
+  if (result?.error && ["401", "403", 401, 403].includes(result.error.status)) {
+    console.log("Logging out user, removing localStorage");
     localStorage.removeItem("userInfo");
+    api.dispatch(logout());
+    window.location.href = "/";
   }
 
   return result;
