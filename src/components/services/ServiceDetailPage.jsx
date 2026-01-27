@@ -4,6 +4,7 @@ import { ServiceDetailWrapper, Wrapper } from "../../styles/service-detail";
 import { NavLink, useParams } from "react-router-dom";
 import { useGetServiceByIdQuery } from "../../slices/api.slice";
 import { useSelector } from "react-redux";
+import { useDeleteServiceMutation } from "../../slices/form.slice";
 
 const staggerContainer = {
   hidden: { opacity: 0 },
@@ -96,7 +97,7 @@ const ServiceDetail = () => {
                 const loadId = toast.loading("Deleting service...");
 
                 try {
-                  await deleteService(service._id).unwrap();
+                  await useDeleteServiceMutation(service._id).unwrap();
 
                   toast.success("Service deleted successfully", {
                     id: loadId,

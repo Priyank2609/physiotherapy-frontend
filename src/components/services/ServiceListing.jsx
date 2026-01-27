@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { ServiceList } from "../../styles/service-listing";
 import { useGetServicesQuery } from "../../slices/api.slice";
 import { NavLink } from "react-router-dom";
 
 const Services = () => {
-  const { data, isLoading, isError } = useGetServicesQuery();
+  const { data, isLoading, isError, refetch } = useGetServicesQuery();
 
   const services = data?.data || [];
+  useEffect(() => {
+    refetch();
+  }, []);
 
   return (
     <ServiceList>
