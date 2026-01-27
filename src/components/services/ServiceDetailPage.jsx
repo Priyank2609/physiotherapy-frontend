@@ -37,6 +37,119 @@ const ServiceDetail = () => {
       : service.treatments.split(",").map((i) => i.trim())
     : [];
 
+  const handleDelete = () => {
+    toast.custom(
+      (t) => (
+        <motion.div
+          initial={{ opacity: 0, y: 50, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.95 }}
+          style={{
+            maxWidth: "350px",
+            width: "100%",
+            background: "#ffffff",
+            padding: "20px",
+            borderRadius: "16px",
+            boxShadow: "0 20px 40px rgba(6, 78, 59, 0.15)",
+            border: "1px solid #e2e8f0",
+            display: "flex",
+            flexDirection: "column",
+            gap: "12px",
+            pointerEvents: "auto",
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+            <div
+              style={{
+                background: "#fef2f2",
+                padding: "8px",
+                borderRadius: "10px",
+                color: "#ef4444",
+              }}
+            >
+              <Trash2 size={20} />
+            </div>
+
+            <div>
+              <h4
+                style={{
+                  margin: 0,
+                  color: "#064e3b",
+                  fontSize: "1rem",
+                  fontWeight: "700",
+                }}
+              >
+                Confirm Service Deletion
+              </h4>
+              <p style={{ margin: 0, color: "#64748b", fontSize: "0.85rem" }}>
+                This service will be permanently removed.
+              </p>
+            </div>
+          </div>
+
+          <div style={{ display: "flex", gap: "10px", marginTop: "8px" }}>
+            <button
+              onClick={async () => {
+                toast.dismiss(t.id);
+                const loadId = toast.loading("Deleting service...");
+
+                try {
+                  await deleteService(service._id).unwrap();
+
+                  toast.success("Service deleted successfully", {
+                    id: loadId,
+                  });
+
+                  navigate("/admin/services");
+
+                  setTimeout(() => {
+                    toast.dismiss();
+                  }, 4000);
+                } catch (err) {
+                  toast.error("Failed to delete service", {
+                    id: loadId,
+                    duration: 4000,
+                  });
+                }
+              }}
+              style={{
+                flex: 1,
+                background: "#ef4444",
+                color: "white",
+                border: "none",
+                padding: "10px",
+                borderRadius: "10px",
+                fontSize: "0.85rem",
+                fontWeight: "700",
+                cursor: "pointer",
+              }}
+            >
+              Confirm Delete
+            </button>
+
+            <button
+              onClick={() => toast.dismiss(t.id)}
+              style={{
+                flex: 1,
+                background: "#f8fafc",
+                color: "#64748b",
+                border: "1px solid #e2e8f0",
+                padding: "10px",
+                borderRadius: "10px",
+                fontSize: "0.85rem",
+                fontWeight: "600",
+                cursor: "pointer",
+              }}
+            >
+              Cancel
+            </button>
+          </div>
+        </motion.div>
+      ),
+      { duration: 6000, position: "bottom-right" },
+    );
+  };
+
   if (isLoading) {
     return (
       <Wrapper>
