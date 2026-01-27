@@ -111,6 +111,19 @@ export const formSlice = createApi({
         body: formData,
       }),
     }),
+    updateService: builder.mutation({
+      query: ({ id, data }) => ({
+        url: `services/update/${id}`,
+        method: "PUT",
+        body: data,
+      }),
+    }),
+    deleteService: builder.mutation({
+      query: (id) => ({
+        url: `services/delete/${id}`,
+        method: "DELETE",
+      }),
+    }),
   }),
 });
 
@@ -129,4 +142,6 @@ export const {
   useUpdateDoctorMutation,
   useDeleteBlogMutation,
   useUpdateBlogMutation,
+  useUpdateServiceMutation,
+  useDeleteServiceMutation,
 } = formSlice;
