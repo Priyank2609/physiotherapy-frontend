@@ -27,16 +27,13 @@ const ServiceDetail = () => {
   const userInfo = useSelector((state) => state.userInfo.userInfo);
   const user = userInfo?.user;
   const isAdmin = user?.role === "Admin";
-  const benefitsArray = service?.benefits
-    ? Array.isArray(service.benefits)
-      ? service.benefits
-      : service.benefits.split(",").map((i) => i.trim())
+  const benefitsArray = Array.isArray(service?.benefits)
+    ? service.benefits
     : [];
-  const treatmentsArray = service?.treatments
-    ? Array.isArray(service.treatments)
-      ? service.treatments
-      : service.treatments.split(",").map((i) => i.trim())
+  const treatmentsArray = Array.isArray(service?.treatments)
+    ? service.treatments
     : [];
+
   useEffect(() => {
     refetch();
   }, []);
