@@ -288,30 +288,31 @@ const ServiceDetail = () => {
             <div className="info-item">
               <strong>Price:</strong> <span>₹{service.price}</span>
             </div>
-
-            {!isAdmin && (
-              <NavLink to={"/book-appointment"}>
-                <motion.button
-                  className="book-btn"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Book Now
-                </motion.button>
-              </NavLink>
-            )}
-
-            {isAdmin && (
-              <div style={{ display: "flex", gap: "10px" }}>
-                <NavLink to={`/admin/services/edit/${service._id}`}>
-                  <button className="edit-btn">✏️ Edit</button>
+            <div className="action-buttons">
+              {!isAdmin && (
+                <NavLink to={"/book-appointment"}>
+                  <motion.button
+                    className="book-btn"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Book Now
+                  </motion.button>
                 </NavLink>
+              )}
 
-                <button className="delete-btn" onClick={handleDelete}>
-                  🗑 Delete
-                </button>
-              </div>
-            )}
+              {isAdmin && (
+                <div style={{ display: "flex", gap: "10px" }}>
+                  <NavLink to={`/admin/services/edit/${service._id}`}>
+                    <button className="edit-btn">✏️ Edit</button>
+                  </NavLink>
+
+                  <button className="delete-btn" onClick={handleDelete}>
+                    🗑 Delete
+                  </button>
+                </div>
+              )}
+            </div>
           </motion.div>
         </div>
       </section>

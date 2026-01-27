@@ -185,6 +185,98 @@ export const ServiceDetailWrapper = styled.div`
       color: #ef4444;
     }
   }
+
+  /* ===== ACTION BUTTON GROUP ===== */
+  .action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+  }
+
+  /* ===== BOOK BUTTON (PRIMARY) ===== */
+  .book-btn {
+    background: #064e3b;
+    color: #ffffff;
+    border: none;
+    padding: 11px 18px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 10px 25px rgba(6, 78, 59, 0.25);
+  }
+
+  .book-btn:hover {
+    background: #065f46;
+    transform: translateY(-1px);
+  }
+
+  .book-btn:active {
+    transform: scale(0.97);
+  }
+
+  /* ===== EDIT BUTTON ===== */
+  .edit-btn {
+    background: #f8fafc;
+    color: #064e3b;
+    border: 1px solid #e2e8f0;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .edit-btn:hover {
+    background: #ecfdf5;
+    border-color: #064e3b;
+  }
+
+  /* ===== DELETE BUTTON ===== */
+  .delete-btn {
+    background: #fef2f2;
+    color: #ef4444;
+    border: 1px solid #fecaca;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .delete-btn:hover {
+    background: #fee2e2;
+    border-color: #ef4444;
+  }
+
+  .delete-btn:active {
+    transform: scale(0.97);
+  }
+
+  /* ===== DISABLED ===== */
+  .book-btn:disabled,
+  .edit-btn:disabled,
+  .delete-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 480px) {
+    .action-buttons {
+      flex-direction: column;
+    }
+
+    .book-btn,
+    .edit-btn,
+    .delete-btn {
+      width: 100%;
+    }
+  }
 `;
 
 export const Wrapper = styled.div`
