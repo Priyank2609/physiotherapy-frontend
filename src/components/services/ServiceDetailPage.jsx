@@ -25,7 +25,7 @@ const ServiceDetail = () => {
   const { id } = useParams();
   const { data, isLoading, isError, refetch } = useGetServiceByIdQuery(id);
   const service = data?.data;
-  // console.log(service);
+
   const userInfo = useSelector((state) => state.userInfo.userInfo);
   const user = userInfo?.user;
   const isAdmin = user?.role === "Admin";
@@ -39,12 +39,12 @@ const ServiceDetail = () => {
       ? service.treatments
       : service.treatments.split(",").map((i) => i.trim())
     : [];
+
+  const [deleteService] = useDeleteServiceMutation();
+  const navigate = useNavigate();
   useEffect(() => {
     refetch();
   }, []);
-  const [deleteService] = useDeleteServiceMutation();
-  const navigate = useNavigate();
-
   const handleDelete = () => {
     toast.custom(
       (t) => (
