@@ -113,7 +113,7 @@ export const NewService = styled.div`
   }
   /* Error message styles */
   .error {
-    color: #dc2626; /* Red color */
+    color: #dc2626 !important; /* Red color */
     font-size: 0.875rem; /* Small font */
     margin-top: 4px;
   }
