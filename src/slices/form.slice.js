@@ -1,15 +1,13 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { baseQueryWithAutoLogout } from "../services/baseQuery";
-
 export const formSlice = createApi({
   reducerPath: "formSlice",
 
-  baseQuery: fetchBaseQuery({
-    baseUrl: "https://physiotherapy-backend-6uw3.onrender.com/",
-    credentials: "include",
-  }),
+  // baseQuery: fetchBaseQuery({
+  //   baseUrl: "https://physiotherapy-backend-6uw3.onrender.com/",
+  //   credentials: "include",
+  // }),
   baseQuery: baseQueryWithAutoLogout,
-
   endpoints: (builder) => ({
     login: builder.mutation({
       query: (data) => ({

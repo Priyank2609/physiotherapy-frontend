@@ -47,7 +47,7 @@ export const Navbar = () => {
                 <img src={logo} alt="Logo" />
                 <div>
                   <h1>PHYSIOTEREPIA</h1>
-                  <span>Care and Cure is Our Goal</span>
+                  <span>Physiotherapy and Rehab centre</span>
                 </div>
               </div>
             </NavLink>
