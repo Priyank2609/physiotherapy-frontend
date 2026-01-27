@@ -33,7 +33,7 @@ const EditService = () => {
     },
   });
 
-  // Dynamic arrays
+  /* ------------------ FIELD ARRAYS ------------------ */
   const {
     fields: benefitFields,
     append: addBenefit,
@@ -52,15 +52,15 @@ const EditService = () => {
     name: "treatments",
   });
 
-  // Prefill data (LIKE BLOG)
+  /* ------------------ PREFILL DATA ------------------ */
   useEffect(() => {
     if (service) {
       reset({
-        title: service.title,
-        shortDescription: service.shortDescription,
-        longDescription: service.longDescription,
-        price: service.price,
-        duration: service.duration,
+        title: service.title || "",
+        shortDescription: service.shortDescription || "",
+        longDescription: service.longDescription || "",
+        price: service.price || "",
+        duration: service.duration || "",
         benefits: Array.isArray(service.benefits)
           ? service.benefits.map((b) => ({ value: b }))
           : [],
@@ -71,45 +71,56 @@ const EditService = () => {
     }
   }, [service, reset]);
 
-  // SUBMIT (Blog-style FormData)
+  /* ------------------ SUBMIT ------------------ */
   const onSubmit = async (data) => {
     const toastId = toast.loading("Updating service...");
 
     try {
       const formData = new FormData();
 
-      // Simple fields
-      [
-        "title",
-        "shortDescription",
-        "longDescription",
-        "price",
-        "duration",
-      ].forEach((key) => formData.append(key, data[key]));
+      // TEXT FIELDS
+      formData.append("title", data.title);
+      formData.append("shortDescription", data.shortDescription);
+      formData.append("longDescription", data.longDescription);
+      formData.append("price", Number(data.price));
+      formData.append("duration", Number(data.duration));
 
-      // Arrays
-      formData.append(
-        "benefits",
-        JSON.stringify(data.benefits.map((b) => b.value)),
-      );
-      formData.append(
-        "treatments",
-        JSON.stringify(data.treatments.map((t) => t.value)),
-      );
+      // ARRAYS (IMPORTANT)
+      if (data.benefits?.length) {
+        formData.append(
+          "benefits",
+          JSON.stringify(data.benefits.map((b) => b.value)),
+        );
+      }
 
-      // Images
+      if (data.treatments?.length) {
+        formData.append(
+          "treatments",
+          JSON.stringify(data.treatments.map((t) => t.value)),
+        );
+      }
+
+      // IMAGES
       if (data.mainImage?.[0]) {
         formData.append("mainImage", data.mainImage[0]);
       }
+
       if (data.secondaryImage?.[0]) {
         formData.append("secondaryImage", data.secondaryImage[0]);
       }
+
+      // DEBUG (optional)
+      // for (let pair of formData.entries()) {
+      //   console.log(pair[0], pair[1]);
+      // }
 
       await updateService({ id, formData }).unwrap();
       toast.success("Service updated successfully", { id: toastId });
       navigate(`/services/${id}`);
     } catch (err) {
-      toast.error(err?.data?.message || "Update failed", { id: toastId });
+      toast.error(err?.data?.message || "Update failed", {
+        id: toastId,
+      });
     }
   };
 
@@ -139,6 +150,7 @@ const EditService = () => {
 
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Input placeholder="Service Title" {...register("title")} />
+
         <Input
           placeholder="Short Description"
           {...register("shortDescription")}
@@ -151,6 +163,7 @@ const EditService = () => {
         />
 
         <Input type="number" placeholder="Price" {...register("price")} />
+
         <Input
           type="number"
           placeholder="Duration (mins)"
@@ -170,6 +183,7 @@ const EditService = () => {
             </button>
           </div>
         ))}
+
         <button type="button" onClick={() => addBenefit({ value: "" })}>
           <Plus size={16} /> Add Benefit
         </button>
@@ -187,6 +201,7 @@ const EditService = () => {
             </button>
           </div>
         ))}
+
         <button type="button" onClick={() => addTreatment({ value: "" })}>
           <Plus size={16} /> Add Treatment
         </button>
@@ -203,7 +218,8 @@ const EditService = () => {
         </FileGroup>
 
         <SaveButton type="submit" disabled={updating}>
-          <Save size={18} /> {updating ? "Updating..." : "Save Changes"}
+          <Save size={18} />
+          {updating ? " Updating..." : " Save Changes"}
         </SaveButton>
       </Form>
     </EditServiceContainer>
