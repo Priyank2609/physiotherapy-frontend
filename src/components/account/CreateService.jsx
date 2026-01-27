@@ -42,11 +42,13 @@ function CreateService() {
   const navigate = useNavigate();
 
   const handleService = async (data) => {
+    // Check for images
     if (!data.mainImage?.[0] || !data.secondaryImage?.[0]) {
       toast.error("Please select both main and secondary images");
       return;
     }
 
+    // Prepare FormData
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("shortDescription", data.shortDescription);
@@ -56,11 +58,13 @@ function CreateService() {
 
     formData.append(
       "benefits",
-      JSON.stringify(data.benefits.map((b) => b.value).filter((v) => v)),
+      JSON.stringify(data.benefits.map((b) => b.value).filter((v) => v !== "")),
     );
     formData.append(
       "treatments",
-      JSON.stringify(data.treatments.map((t) => t.value).filter((v) => v)),
+      JSON.stringify(
+        data.treatments.map((t) => t.value).filter((v) => v !== ""),
+      ),
     );
 
     formData.append("mainImage", data.mainImage[0]);
@@ -81,7 +85,11 @@ function CreateService() {
         <h2>Create New Service</h2>
         <p>Add physiotherapy service details</p>
 
-        <form onSubmit={handleSubmit(handleService)} className="service-form">
+        <form
+          onSubmit={handleSubmit(handleService)}
+          className="service-form"
+          encType="multipart/form-data"
+        >
           {/* TITLE */}
           <div className="form-group">
             <label>Service Title</label>
@@ -174,6 +182,30 @@ function CreateService() {
             >
               <Plus size={16} /> Add Treatment
             </button>
+          </div>
+
+          {/* DURATION */}
+          <div className="form-group">
+            <label>Duration (minutes)</label>
+            <input
+              type="number"
+              placeholder="Enter duration"
+              {...register("duration", { required: "Duration is required" })}
+            />
+            {errors.duration && (
+              <p className="error">{errors.duration.message}</p>
+            )}
+          </div>
+
+          {/* PRICE */}
+          <div className="form-group">
+            <label>Price (₹)</label>
+            <input
+              type="number"
+              placeholder="Enter price"
+              {...register("price", { required: "Price is required" })}
+            />
+            {errors.price && <p className="error">{errors.price.message}</p>}
           </div>
 
           {/* IMAGES */}
