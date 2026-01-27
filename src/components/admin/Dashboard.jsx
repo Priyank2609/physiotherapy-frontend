@@ -84,7 +84,7 @@ const Dashboard = () => {
   const todayAppointmentName = today?.totalApp || [];
   const pendingAppointment = pending?.pendingAppointment;
   const upcomingAppointment = upcoming?.count;
-  const enquiries = enquiry?.contacts.slice(0, 3);
+  const enquiries = enquiry?.contacts.slice(0, 3) || [];
   // console.log(pending);
   // console.log(upcoming);
 
