@@ -302,7 +302,9 @@ const ServiceDetail = () => {
               )}
 
               {isAdmin && (
-                <div style={{ display: "flex", gap: "10px" }}>
+                <div
+                  style={{ display: "flex", gap: "10px", alignItems: "center" }}
+                >
                   <NavLink to={`/admin/services/edit/${service._id}`}>
                     <button className="edit-btn">✏️ Edit</button>
                   </NavLink>

@@ -190,7 +190,6 @@ export const ServiceDetailWrapper = styled.div`
   .action-buttons {
     display: flex;
     gap: 10px;
-    align-items:center
     margin-top: 14px;
     flex-wrap: wrap;
   }
