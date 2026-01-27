@@ -29,6 +29,7 @@ const EditService = () => {
   const watchedMainImage = watch("mainImage");
   const watchedSecondaryImage = watch("secondaryImage");
 
+  // Prefill form with existing service data
   useEffect(() => {
     if (service) {
       reset({
@@ -67,8 +68,9 @@ const EditService = () => {
     formData.append("longDescription", data.longDescription);
     formData.append("price", data.price);
     formData.append("duration", data.duration);
+    formData.append("isActive", data.isActive || true);
 
-    // Benefits
+    // Benefits array
     const benefitsArray = data.benefits
       .split(",")
       .map((b) => b.trim())
@@ -79,17 +81,20 @@ const EditService = () => {
       });
       return;
     }
-    formData.append("benefits", JSON.stringify(benefitsArray));
+    benefitsArray.forEach((benefit) => formData.append("benefits", benefit));
 
-    // Treatments
+    // Treatments array
     const treatmentsArray = data.treatments
       ? data.treatments
           .split(",")
           .map((t) => t.trim())
           .filter((t) => t !== "")
       : [];
-    formData.append("treatments", JSON.stringify(treatmentsArray));
+    treatmentsArray.forEach((treatment) =>
+      formData.append("treatments", treatment),
+    );
 
+    // Only append new images if selected
     if (data.mainImage?.[0]) formData.append("mainImage", data.mainImage[0]);
     if (data.secondaryImage?.[0])
       formData.append("secondaryImage", data.secondaryImage[0]);
@@ -131,6 +136,7 @@ const EditService = () => {
           <p>Update physiotherapy service details</p>
 
           <form className="service-form" onSubmit={handleSubmit(handleUpdate)}>
+            {/* Title */}
             <div className="form-group">
               <label>Service Title</label>
               <input
@@ -141,6 +147,7 @@ const EditService = () => {
               {errors.title && <p className="error">{errors.title.message}</p>}
             </div>
 
+            {/* Short Description */}
             <div className="form-group">
               <label>Short Description</label>
               <textarea
@@ -154,6 +161,7 @@ const EditService = () => {
               )}
             </div>
 
+            {/* Long Description */}
             <div className="form-group">
               <label>Long Description</label>
               <textarea
@@ -167,6 +175,7 @@ const EditService = () => {
               )}
             </div>
 
+            {/* Benefits */}
             <div className="form-group">
               <label>Benefits</label>
               <input
@@ -180,6 +189,7 @@ const EditService = () => {
               <small>Separate benefits using commas</small>
             </div>
 
+            {/* Treatments */}
             <div className="form-group">
               <label>Treatments</label>
               <input
@@ -190,6 +200,7 @@ const EditService = () => {
               <small>Separate treatments using commas (optional)</small>
             </div>
 
+            {/* Duration & Price */}
             <div className="form-row">
               <div className="form-group">
                 <label>Duration (minutes)</label>
@@ -218,6 +229,7 @@ const EditService = () => {
               </div>
             </div>
 
+            {/* Images */}
             <div className="form-group">
               <label>Main Image</label>
               <input type="file" {...register("mainImage")} />

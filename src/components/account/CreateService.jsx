@@ -16,7 +16,6 @@ function CreateService() {
   const [createService, { isLoading }] = useCreateServiceMutation();
   const navigate = useNavigate();
   const handleService = async (data) => {
-    const loadingToast = toast.loading("Creating service...");
     if (!data.mainImage || !data.secondaryImage) {
       toast.error("Please select both main and secondary images");
       return;
@@ -55,16 +54,12 @@ function CreateService() {
 
     try {
       const response = await createService(formData).unwrap();
-      toast.success(response.message || "Service created successfully", {
-        id: loadingToast,
-        duration: 4000,
-      });
+      toast.success(response.message || "Service created successfully");
       navigate("/services");
     } catch (error) {
       console.error("Failed to create service:", error);
       toast.error(
         error?.data?.message || "Failed to create service. Try again.",
-        { id: loadingToast, duration: 4000 },
       );
     }
   };
