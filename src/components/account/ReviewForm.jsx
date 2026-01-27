@@ -79,7 +79,9 @@ const ReviewForm = () => {
                 <User size={16} /> Patient Name
               </label>
               <input
-                {...register("name", { required: "Please enter your name" })}
+                {...register("patientName", {
+                  required: "Please enter your name",
+                })}
                 placeholder="Enter your name"
               />
               {errors.name && <ErrorMsg>{errors.name.message}</ErrorMsg>}
