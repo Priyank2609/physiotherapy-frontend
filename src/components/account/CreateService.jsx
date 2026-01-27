@@ -42,40 +42,52 @@ function CreateService() {
   const navigate = useNavigate();
 
   const handleService = async (data) => {
-    // Check for images
+    // Check for images first
     if (!data.mainImage?.[0] || !data.secondaryImage?.[0]) {
       toast.error("Please select both main and secondary images");
       return;
     }
 
-    // Prepare FormData
-    const formData = new FormData();
-    formData.append("title", data.title);
-    formData.append("shortDescription", data.shortDescription);
-    formData.append("longDescription", data.longDescription);
-    formData.append("duration", data.duration);
-    formData.append("price", data.price);
-
-    formData.append(
-      "benefits",
-      JSON.stringify(data.benefits.map((b) => b.value).filter((v) => v !== "")),
-    );
-    formData.append(
-      "treatments",
-      JSON.stringify(
-        data.treatments.map((t) => t.value).filter((v) => v !== ""),
-      ),
-    );
-
-    formData.append("mainImage", data.mainImage[0]);
-    formData.append("secondaryImage", data.secondaryImage[0]);
+    const loadingToast = toast.loading("Creating service...");
 
     try {
+      const formData = new FormData();
+
+      formData.append("title", data.title);
+      formData.append("shortDescription", data.shortDescription);
+      formData.append("longDescription", data.longDescription);
+      formData.append("duration", data.duration);
+      formData.append("price", data.price);
+
+      // Append arrays as JSON strings
+      formData.append(
+        "benefits",
+        JSON.stringify(data.benefits.map((b) => b.value).filter(Boolean)),
+      );
+      formData.append(
+        "treatments",
+        JSON.stringify(data.treatments.map((t) => t.value).filter(Boolean)),
+      );
+
+      // Append images
+      formData.append("mainImage", data.mainImage[0]);
+      formData.append("secondaryImage", data.secondaryImage[0]);
+
+      // Call your API mutation
       await createService(formData).unwrap();
-      toast.success("Service created successfully!");
+
+      toast.success("Service created successfully ✅", {
+        id: loadingToast,
+        duration: 4000,
+      });
+
       navigate("/services");
     } catch (err) {
-      toast.error(err?.data?.message || "Failed to create service");
+      toast.error(err?.data?.message || "Failed to create service ❌", {
+        id: loadingToast,
+        duration: 4000,
+      });
+      console.error("Create Service Error:", err);
     }
   };
 
