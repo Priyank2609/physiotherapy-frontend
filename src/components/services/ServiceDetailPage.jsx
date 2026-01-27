@@ -305,7 +305,7 @@ const ServiceDetail = () => {
                 <div
                   style={{ display: "flex", gap: "10px", alignItems: "center" }}
                 >
-                  <NavLink to={`/admin/services/edit/${service._id}`}>
+                  <NavLink to={`/admin/update-service/${service._id}`}>
                     <button className="edit-btn">✏️ Edit</button>
                   </NavLink>
 

@@ -29,6 +29,7 @@ import AdminReviews from "./components/review/ReviewLists.jsx";
 import UpdateDoctor from "./components/team/TeamUpdatePage.jsx";
 import Team from "./components/team/Team.jsx";
 import UpdateBlog from "./components/research/UpdateBlog.jsx";
+import EditService from "./components/services/UpdateService.jsx";
 
 const router = createBrowserRouter([
   {
@@ -108,6 +109,10 @@ const router = createBrowserRouter([
       {
         path: "/admin/update-blog/:slug",
         element: <UpdateBlog />,
+      },
+      {
+        path: "/admin/update-service/:id",
+        element: <EditService />,
       },
     ],
   },
