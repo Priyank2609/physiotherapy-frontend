@@ -51,6 +51,17 @@ const EditService = () => {
     name: "treatments",
   });
 
+  // Parse JSON if needed
+  const parseJSONField = (field) => {
+    if (!field) return [];
+    if (Array.isArray(field)) return field;
+    try {
+      return JSON.parse(field);
+    } catch {
+      return [];
+    }
+  };
+
   useEffect(() => {
     if (service) {
       reset({
@@ -59,12 +70,10 @@ const EditService = () => {
         longDescription: service.longDescription || "",
         price: service.price || "",
         duration: service.duration || "",
-        benefits: Array.isArray(service.benefits)
-          ? service.benefits.map((b) => ({ value: b }))
-          : [],
-        treatments: Array.isArray(service.treatments)
-          ? service.treatments.map((t) => ({ value: t }))
-          : [],
+        benefits: parseJSONField(service.benefits).map((b) => ({ value: b })),
+        treatments: parseJSONField(service.treatments).map((t) => ({
+          value: t,
+        })),
       });
     }
   }, [service, reset]);
