@@ -9,9 +9,14 @@ const rawBaseQuery = fetchBaseQuery({
 export const baseQueryWithAutoLogout = async (args, api, extraOptions) => {
   const result = await rawBaseQuery(args, api, extraOptions);
 
-  if (result?.error?.status === 401) {
+  if (result?.error && [401, 403].includes(result.error.status)) {
     api.dispatch(logout());
-    window.location.href = "/login";
+
+    // clear stored user info
+    localStorage.removeItem("userinfo");
+
+    // redirect
+    window.location.replace("/login");
   }
 
   return result;
