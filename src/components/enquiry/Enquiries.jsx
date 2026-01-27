@@ -22,17 +22,17 @@ const Enquiries = () => {
     );
   }
 
-  if (isError) {
-    return (
-      <ErrorContainer>
-        <div className="error-card">
-          <h2>Connection Error</h2>
-          <p>Failed to load enquiries. Please check your network.</p>
-          <button onClick={refetch}>Try Again</button>
-        </div>
-      </ErrorContainer>
-    );
-  }
+  // if (isError) {
+  //   return (
+  //     <ErrorContainer>
+  //       <div className="error-card">
+  //         <h2>Connection Error</h2>
+  //         <p>Failed to load enquiries. Please check your network.</p>
+  //         <button onClick={refetch}>Try Again</button>
+  //       </div>
+  //     </ErrorContainer>
+  //   );
+  // }
 
   return (
     <EnquiryWrapper>
