@@ -6,7 +6,7 @@ export const NewServiceWrapper = styled.div`
   padding: 32px;
   background: #ffffff;
   border-radius: 16px;
-  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
 
   .form-card {
     display: flex;
@@ -20,7 +20,8 @@ export const NewServiceWrapper = styled.div`
     }
 
     p {
-      color: #64748b;
+      color: #475569;
+      font-size: 14px;
       margin-bottom: 20px;
     }
 
@@ -36,16 +37,24 @@ export const NewServiceWrapper = styled.div`
 
         label {
           font-weight: 600;
-          color: #334155;
+          color: #0f172a;
+          font-size: 14px;
         }
 
         input,
         textarea {
-          padding: 12px;
-          border-radius: 10px;
-          border: 1px solid #e2e8f0;
+          padding: 12px 14px;
+          border-radius: 12px;
+          border: 1px solid #cbd5e1;
           background: #f8fafc;
           font-size: 14px;
+          transition: all 0.2s ease;
+
+          &:focus {
+            border-color: #2563eb;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+          }
         }
 
         .error {
@@ -57,13 +66,14 @@ export const NewServiceWrapper = styled.div`
       .form-section {
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 10px;
 
         h3 {
           display: flex;
           align-items: center;
           gap: 6px;
           color: #0f172a;
+          font-size: 16px;
         }
 
         .dynamic-item {
@@ -80,6 +90,11 @@ export const NewServiceWrapper = styled.div`
             border: none;
             cursor: pointer;
             color: #ef4444;
+            transition: color 0.2s ease;
+
+            &:hover {
+              color: #dc2626;
+            }
           }
         }
 
@@ -87,21 +102,26 @@ export const NewServiceWrapper = styled.div`
           display: flex;
           align-items: center;
           gap: 6px;
-          padding: 6px 10px;
+          padding: 6px 12px;
           border: 1px dashed #2563eb;
-          border-radius: 10px;
+          border-radius: 12px;
           color: #2563eb;
-          background: #f0f9ff;
+          background: #eff6ff;
           cursor: pointer;
           font-weight: 600;
           width: fit-content;
+          transition: all 0.2s ease;
+
+          &:hover {
+            background: #dbeafe;
+          }
         }
       }
 
       .submit-btn {
         margin-top: 24px;
-        padding: 14px 22px;
-        background: linear-gradient(135deg, #2563eb, #1e40af);
+        padding: 14px 20px;
+        background: #2563eb;
         color: #fff;
         border: none;
         border-radius: 12px;
@@ -110,7 +130,31 @@ export const NewServiceWrapper = styled.div`
         display: flex;
         align-items: center;
         gap: 8px;
+        justify-content: center;
         cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background: #1e40af;
+        }
+
+        &:disabled {
+          opacity: 0.7;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 20px;
+
+    .service-form {
+      .form-section {
+        .dynamic-item {
+          flex-direction: column;
+          align-items: stretch;
+        }
       }
     }
   }
