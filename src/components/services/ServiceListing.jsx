@@ -24,7 +24,7 @@ const Services = () => {
           </p>
           <nav className="breadcrumbs">
             <NavLink to={"/"}>
-              <span>Physioterepia Care Center</span>
+              <span>Physiotherapy and Rehab centre</span>
             </NavLink>
             <span className="sep">›</span>
             <span className="active">Services</span>

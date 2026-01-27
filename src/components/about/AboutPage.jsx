@@ -44,7 +44,7 @@ const AboutPage = () => {
           <p>Restoring Mobility, Enhancing Life Since 2014</p>
           <nav className="breadcrumbs">
             <NavLink to={"/"}>
-              <span>Physioterepia Care Center</span>
+              <span>Physiotherapy and Rehab centre</span>
             </NavLink>
             <span className="sep">›</span>
             <span className="active">About Us</span>

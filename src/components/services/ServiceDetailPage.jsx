@@ -202,7 +202,7 @@ const ServiceDetail = () => {
           </motion.p>
 
           <nav className="breadcrumbs">
-            <span>Physioterepia Care Center</span>
+            <span>Physiotherapy and Rehab centre</span>
             <span className="sep">›</span>
             <span className="active">{service.title}</span>
           </nav>
