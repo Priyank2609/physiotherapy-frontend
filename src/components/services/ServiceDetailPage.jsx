@@ -42,6 +42,8 @@ const ServiceDetail = () => {
     refetch();
   }, []);
   const handleDelete = () => {
+    console.log(""sevice,service._id);
+
     toast.custom(
       (t) => (
         <motion.div
