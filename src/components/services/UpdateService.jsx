@@ -14,7 +14,7 @@ import {
   FileGroup,
   ErrorText,
   SaveButton,
-} from "./editService.styles";
+} from "../../styles/update-service";
 import { useUpdateServiceMutation } from "../../slices/form.slice";
 
 const EditService = () => {
