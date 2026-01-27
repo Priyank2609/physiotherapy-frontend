@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { ServiceDetailWrapper, Wrapper } from "../../styles/service-detail";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useGetServiceByIdQuery } from "../../slices/api.slice";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
@@ -41,8 +41,11 @@ const ServiceDetail = () => {
   useEffect(() => {
     refetch();
   }, []);
+  const [deleteService] = useDeleteServiceMutation();
+  const navigate = useNavigate();
+
   const handleDelete = () => {
-    console.log("sevice", service._id);
+    if (!service?._id) return;
 
     toast.custom(
       (t) => (
@@ -100,12 +103,9 @@ const ServiceDetail = () => {
                 const loadId = toast.loading("Deleting service...");
 
                 try {
-                  await useDeleteServiceMutation(service._id).unwrap();
+                  await deleteService(service._id).unwrap(); // ✅ FIXED
 
-                  toast.success("Service deleted successfully", {
-                    id: loadId,
-                  });
-
+                  toast.success("Service deleted successfully", { id: loadId });
                   navigate("/admin/services");
 
                   setTimeout(() => {
