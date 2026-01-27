@@ -95,7 +95,7 @@ const MapSection = () => {
               </div>
             </div>
             <a
-              href="https://www.google.com/maps/dir/?api=1&destination=39+Jayanand+Society+Krishna+Nagar+Ahmedabad+382345"
+              href="https://www.google.com/maps/place/58,+Krishnanagar,+Ahmedabad,+Gujarat+382345/@23.0537553,72.6449501,105m/data=!3m1!1e3!4m15!1m8!3m7!1s0x395e86c3e2eddc99:0x49977169c864fb65!2s58,+Krishnanagar,+Ahmedabad,+Gujarat+382345!3b1!8m2!3d23.0526538!4d72.644796!16s%2Fg%2F11h6ktq5rl!3m5!1s0x395e86c4038b5e03:0xb467febdc46b235c!8m2!3d23.0539829!4d72.645032!16s%2Fg%2F11vsjdg_6m?entry=ttu&g_ep=EgoyMDI2MDEyMS4wIKXMDSoASAFQAw%3D%3D"
               target="_blank"
               rel="noopener noreferrer"
               className="get-directions"
