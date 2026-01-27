@@ -65,7 +65,15 @@ const Enquiries = () => {
                 {enquiries.length === 0 ? (
                   <tr>
                     <td colSpan="4" className="empty-text">
-                      No enquiries found in the database.
+                      <div
+                        style={{
+                          textAlign: "center",
+                          padding: "1rem",
+                          color: "#666",
+                        }}
+                      >
+                        <p>No enquiries found in the database.</p>
+                      </div>
                     </td>
                   </tr>
                 ) : (
