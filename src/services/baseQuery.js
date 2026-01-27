@@ -17,7 +17,6 @@ export const baseQueryWithAutoLogout = async (args, api, extraOptions) => {
   if (result?.error && [401, 403].includes(result.error.status)) {
     api.dispatch(logout());
     localStorage.removeItem("userInfo");
-    window.location.replace("/login");
   }
 
   return result;
