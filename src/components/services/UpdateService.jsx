@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useForm, useFieldArray } from "react-hook-form";
+import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { Plus, Trash2, ArrowLeft, Save } from "lucide-react";
@@ -26,10 +26,17 @@ const EditService = () => {
 
   const service = data?.data;
 
-  const { register, handleSubmit, control, reset } = useForm({
+  const { register, handleSubmit, control, reset, watch } = useForm({
     defaultValues: {
+      title: "",
+      shortDescription: "",
+      longDescription: "",
+      price: "",
+      duration: "",
       benefits: [],
       treatments: [],
+      mainImage: null,
+      secondaryImage: null,
     },
   });
 
@@ -51,6 +58,9 @@ const EditService = () => {
     name: "treatments",
   });
 
+  const watchedMainImage = watch("mainImage");
+  const watchedSecondaryImage = watch("secondaryImage");
+
   useEffect(() => {
     if (service) {
       reset({
@@ -65,6 +75,8 @@ const EditService = () => {
         treatments: Array.isArray(service.treatments)
           ? service.treatments.map((t) => ({ value: t }))
           : [],
+        mainImage: null,
+        secondaryImage: null,
       });
     }
   }, [service, reset]);
@@ -107,9 +119,7 @@ const EditService = () => {
       toast.success("Service updated successfully", { id: toastId });
       navigate(`/services/${id}`);
     } catch (err) {
-      toast.error(err?.data?.message || "Update failed", {
-        id: toastId,
-      });
+      toast.error(err?.data?.message || "Update failed", { id: toastId });
     }
   };
 
@@ -196,11 +206,15 @@ const EditService = () => {
         <FileGroup>
           <label>Main Image</label>
           <input type="file" accept="image/*" {...register("mainImage")} />
+          {watchedMainImage?.[0] && <p>Selected: {watchedMainImage[0].name}</p>}
         </FileGroup>
 
         <FileGroup>
           <label>Secondary Image</label>
           <input type="file" accept="image/*" {...register("secondaryImage")} />
+          {watchedSecondaryImage?.[0] && (
+            <p>Selected: {watchedSecondaryImage[0].name}</p>
+          )}
         </FileGroup>
 
         <SaveButton type="submit" disabled={updating}>
