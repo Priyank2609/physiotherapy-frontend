@@ -45,8 +45,6 @@ const ServiceDetail = () => {
   const navigate = useNavigate();
 
   const handleDelete = () => {
-    if (!service?._id) return;
-
     toast.custom(
       (t) => (
         <motion.div
@@ -103,7 +101,7 @@ const ServiceDetail = () => {
                 const loadId = toast.loading("Deleting service...");
 
                 try {
-                  await deleteService(service._id).unwrap(); // ✅ FIXED
+                  await deleteService(service._id).unwrap();
 
                   toast.success("Service deleted successfully", { id: loadId });
                   navigate("/admin/services");
@@ -112,7 +110,7 @@ const ServiceDetail = () => {
                     toast.dismiss();
                   }, 4000);
                 } catch (err) {
-                  toast.error("Failed to delete service", {
+                  toast.error(err.error.message || "Failed to delete service", {
                     id: loadId,
                     duration: 4000,
                   });
