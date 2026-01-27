@@ -22,7 +22,9 @@ const ServiceDetail = () => {
   const { data, isLoading, isError } = useGetServiceByIdQuery(id);
   const service = data?.data;
   // console.log(service);
-
+  const userInfo = useSelector((state) => state.userInfo.userInfo);
+  const user = userInfo?.user;
+  const isAdmin = user?.role === "Admin";
   const benefitsArray = service?.benefits
     ? Array.isArray(service.benefits)
       ? service.benefits
@@ -172,15 +174,30 @@ const ServiceDetail = () => {
             <div className="info-item">
               <strong>Price:</strong> <span>₹{service.price}</span>
             </div>
-            <NavLink to={"/book-appointment"}>
-              <motion.button
-                className="book-btn"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Book Now
-              </motion.button>
-            </NavLink>
+
+            {!isAdmin && (
+              <NavLink to={"/book-appointment"}>
+                <motion.button
+                  className="book-btn"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Book Now
+                </motion.button>
+              </NavLink>
+            )}
+
+            {isAdmin && (
+              <div style={{ display: "flex", gap: "10px" }}>
+                <NavLink to={`/admin/services/edit/${service._id}`}>
+                  <button className="edit-btn">✏️ Edit</button>
+                </NavLink>
+
+                <button className="delete-btn" onClick={handleDelete}>
+                  🗑 Delete
+                </button>
+              </div>
+            )}
           </motion.div>
         </div>
       </section>
