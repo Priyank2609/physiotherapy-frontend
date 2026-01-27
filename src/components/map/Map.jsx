@@ -36,7 +36,7 @@ const MapSection = () => {
           <div className="map-box">
             <iframe
               title="Physioterapia Clinic Location"
-              src="https://www.google.com/maps/place/58,+Krishnanagar,+Ahmedabad,+Gujarat+382345,+India/@23.0537819,72.6449458,105m/data=!3m1!1e3!4m15!1m8!3m7!1s0x395e86c3e2eddc99:0x49977169c864fb65!2s58,+Krishnanagar,+Ahmedabad,+Gujarat+382345,+India!3b1!8m2!3d23.0526538!4d72.644796!16s%2Fg%2F11h6ktq5rl!3m5!1s0x395e86c4038b5e03:0xb467febdc46b235c!8m2!3d23.0539829!4d72.645032!16s%2Fg%2F11vsjdg_6m?hl=en-GB&entry=ttu&g_ep=EgoyMDI2MDEyMS4wIKXMDSoASAFQAw%3D%3D"
+              src="https://www.google.com/maps/place/Jayanand+society/@23.0539101,72.6446931,197m/data=!3m1!1e3!4m6!3m5!1s0x395e87007fc382d1:0x70d317c04d0274b6!8m2!3d23.0540515!4d72.6446994!16s%2Fg%2F11yvphtlz1?entry=ttu&g_ep=EgoyMDI2MDEyMS4wIKXMDSoASAFQAw%3D%3D"
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
