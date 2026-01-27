@@ -73,7 +73,7 @@ const EditService = () => {
     try {
       await updateService({ id, formData }).unwrap();
       toast.success("Service updated successfully", { id: toastId });
-      navigate("/admin/services");
+      navigate(`/services/${id}`);
     } catch (err) {
       toast.error(err?.data?.message || "Update failed", {
         id: toastId,
