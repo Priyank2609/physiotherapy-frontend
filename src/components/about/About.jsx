@@ -69,7 +69,7 @@ const About = () => {
             variants={containerVariants}
           >
             <motion.span variants={itemVariants} className="tag">
-              About PHYSIOTERAPIA
+              About PHYSIOTEREPIA
             </motion.span>
 
             <motion.h2 variants={itemVariants}>
@@ -78,7 +78,7 @@ const About = () => {
             </motion.h2>
 
             <motion.p variants={itemVariants}>
-              At <strong>PHYSIOTERAPIA</strong>, we are dedicated to restoring
+              At <strong>PHYSIOTEREPIA</strong>, we are dedicated to restoring
               movement, relieving pain, and improving quality of life through
               evidence-based physiotherapy treatments.
             </motion.p>
