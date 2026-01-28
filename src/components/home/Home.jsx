@@ -17,7 +17,7 @@ function Home() {
   const user = userInfo?.user;
   const isAdmin = user?.role === "Admin";
   const { data, isLoading } = useGetAllAppointmentQuery(undefined, {
-    pollingInterval: 100000,
+    pollingInterval: 30000,
 
     skip: !isAdmin,
   });

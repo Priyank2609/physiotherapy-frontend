@@ -11,7 +11,9 @@ import "swiper/css/navigation";
 import { useGetAllReviewsQuery } from "../../slices/api.slice";
 
 const Review = () => {
-  const { data, isError, isLoading } = useGetAllReviewsQuery();
+  const { data, isError, isLoading } = useGetAllReviewsQuery(undefined, {
+    pollingInterval: 100000,
+  });
 
   const testimonials = data?.reviews || [];
   // console.log(testimonials);
