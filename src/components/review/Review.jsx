@@ -12,7 +12,7 @@ import { useGetAllReviewsQuery } from "../../slices/api.slice";
 
 const Review = () => {
   const { data, isError, isLoading } = useGetAllReviewsQuery(undefined, {
-    pollingInterval: 100000,
+    pollingInterval: 10000,
   });
 
   const testimonials = data?.reviews || [];
