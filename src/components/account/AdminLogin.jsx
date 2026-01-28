@@ -57,7 +57,7 @@ const AdminLogin = () => {
           <h2>
             Admin <span>Portal</span>
           </h2>
-          <p>Secure access for Physioterapia management</p>
+          <p>Secure access for Physioterepia management</p>
         </div>
 
         <form className="login-form" onSubmit={handleSubmit(login)}>

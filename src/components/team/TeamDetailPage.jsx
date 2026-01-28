@@ -202,7 +202,7 @@ const DoctorDetailPage = () => {
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
           >
-            <NavLink to={"/"}>Physioterapia Care Center</NavLink> &nbsp; /
+            <NavLink to={"/"}>Physioterepia Care Center</NavLink> &nbsp; /
             &nbsp; <span>Our Team</span>
           </motion.div>
 
