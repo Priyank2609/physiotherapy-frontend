@@ -21,7 +21,7 @@ const Footer = () => {
       <div className="container">
         <div className="footer-grid">
           <div className="footer-brand">
-            <h2>PHYSIOTERAPIA</h2>
+            <h2>PHYSIOTEREPIA</h2>
             <p>
               Providing expert physiotherapy care with compassion, innovation,
               and personalized treatment plans for a pain-free life.
