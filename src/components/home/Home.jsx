@@ -24,7 +24,7 @@ function Home() {
 
   const appointmentData = data?.data || [];
   const prevCountRef = useRef(appointmentData.length);
-  console.log(prevCountRef);
+  // console.log(prevCountRef);
 
   useEffect(() => {
     if (!isAdmin) return;

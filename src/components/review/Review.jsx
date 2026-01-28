@@ -14,7 +14,7 @@ const Review = () => {
   const { data, isError, isLoading } = useGetAllReviewsQuery();
 
   const testimonials = data?.reviews || [];
-  console.log(testimonials);
+  // console.log(testimonials);
 
   if (isLoading) {
     return (
