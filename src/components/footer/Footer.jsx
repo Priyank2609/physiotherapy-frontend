@@ -116,7 +116,7 @@ const Footer = () => {
 
         <div className="footer-bottom">
           <p>
-            © {new Date().getFullYear()} &nbsp;<span>PHYSIOTERAPIA</span>. All
+            © {new Date().getFullYear()} &nbsp;<span>PHYSIOTEREPIA</span>. All
             rights reserved
             {!isAdmin && (
               <Link to="/login" className="admin-trigger">
