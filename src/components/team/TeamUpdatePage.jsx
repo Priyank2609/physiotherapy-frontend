@@ -259,25 +259,28 @@ const UpdateDoctor = () => {
               <Edit3 size={20} /> Availability Days
             </div>
 
-            {[
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday",
-              "Friday",
-              "Saturday",
-              "Sunday",
-            ].map((day) => (
-              <label key={day} style={{ display: "flex", gap: "8px" }}>
-                <input
-                  type="checkbox"
-                  value={day}
-                  {...register("availability.days")}
-                />
-                {day}
-              </label>
-            ))}
+            <div className="days-grid">
+              {[
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday",
+              ].map((day) => (
+                <label key={day} className="day-chip">
+                  <input
+                    type="checkbox"
+                    value={day}
+                    {...register("availability.days")}
+                  />
+                  <span>{day}</span>
+                </label>
+              ))}
+            </div>
           </ArraySection>
+
           <InputGroup>
             <label>Start Time</label>
             <input type="time" {...register("availability.hours.start")} />
@@ -293,12 +296,14 @@ const UpdateDoctor = () => {
             <input type="file" {...register("profileImage")} accept="image/*" />
           </InputGroup>
           <InputGroup $fullWidth>
-            <label
-              style={{ display: "flex", alignItems: "center", gap: "10px" }}
-            >
-              <input type="checkbox" {...register("isActive")} />
-              Active Specialist Profile
-            </label>
+            <div className="toggle-wrapper">
+              <span>Active Specialist Profile</span>
+
+              <label className="switch">
+                <input type="checkbox" {...register("isActive")} />
+                <span className="slider" />
+              </label>
+            </div>
           </InputGroup>
 
           <SubmitButton

@@ -332,7 +332,8 @@ const DoctorDetailPage = () => {
             <h4>Consultation Hours</h4>
             <div className="time-rows">
               <div className="time-row">
-                <Calendar size={18} /> <span>Monday - Saturday</span>
+                <Calendar size={18} />{" "}
+                <span>{doctor.availability?.days?.join(", ")}</span>
               </div>
               <div className="time-row">
                 <Clock size={18} />{" "}
