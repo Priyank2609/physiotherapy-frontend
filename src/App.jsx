@@ -9,6 +9,7 @@ import { Outlet } from "react-router-dom";
 import Footer from "./components/footer/Footer";
 import About from "./components/about/About";
 import ScrollToTop from "./components/scroll/ScrollTop";
+import ProtectedRoute from "./middleware/Protect";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
 
         <Footer />
       </div>
+      <ProtectedRoute />
     </>
   );
 }
