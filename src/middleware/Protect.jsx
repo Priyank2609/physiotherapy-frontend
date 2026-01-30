@@ -1,8 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { getCookie } from "../utils/getCookie";
 
 const ProtectedRoute = () => {
-  const token = getCookie("Physio_Token");
+  const token = localStorage.getItem("Physio_Token");
   console.log(token);
 
   if (!token) {
