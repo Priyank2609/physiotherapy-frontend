@@ -82,6 +82,8 @@ const UpdateDoctor = () => {
       );
       formData.append("availability", JSON.stringify(data.availability));
 
+      formData.append("isActive", data.isActive);
+
       if (data.profileImage?.[0] instanceof File) {
         formData.append("profileImage", data.profileImage[0]);
       }
@@ -149,7 +151,17 @@ const UpdateDoctor = () => {
               placeholder="Neurological Physiotherapy"
             />
           </InputGroup>
-
+          <InputGroup>
+            <label>
+              <Edit3 size={18} /> Experience (Years)
+            </label>
+            <input
+              type="number"
+              {...register("experience")}
+              placeholder="e.g. 8"
+              min="0"
+            />
+          </InputGroup>
           <InputGroup $fullWidth>
             <label>
               <FileText size={18} /> Profile Bio (Brief)
@@ -242,9 +254,51 @@ const UpdateDoctor = () => {
             </button>
           </ArraySection>
 
+          <ArraySection>
+            <div className="section-label">
+              <Edit3 size={20} /> Availability Days
+            </div>
+
+            {[
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday",
+            ].map((day) => (
+              <label key={day} style={{ display: "flex", gap: "8px" }}>
+                <input
+                  type="checkbox"
+                  value={day}
+                  {...register("availability.days")}
+                />
+                {day}
+              </label>
+            ))}
+          </ArraySection>
+          <InputGroup>
+            <label>Start Time</label>
+            <input type="time" {...register("availability.hours.start")} />
+          </InputGroup>
+
+          <InputGroup>
+            <label>End Time</label>
+            <input type="time" {...register("availability.hours.end")} />
+          </InputGroup>
+
           <InputGroup $fullWidth>
             <label>Update Profile Image</label>
             <input type="file" {...register("profileImage")} accept="image/*" />
+          </InputGroup>
+          <InputGroup $fullWidth>
+            <label
+              style={{ display: "flex", alignItems: "center", gap: "10px" }}
+            >
+              <input type="checkbox" {...register("isActive")} />
+              Active Specialist Profile
+            </label>
           </InputGroup>
 
           <SubmitButton
