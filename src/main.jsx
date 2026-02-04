@@ -31,6 +31,7 @@ import Team from "./components/team/Team.jsx";
 import UpdateBlog from "./components/research/UpdateBlog.jsx";
 import EditService from "./components/services/UpdateService.jsx";
 import NotFound from "./components/404/PageNotFound.jsx";
+import ProtectedRoute from "./components/protect/ProtectRoutes.jsx";
 
 const router = createBrowserRouter([
   {
@@ -41,10 +42,7 @@ const router = createBrowserRouter([
         path: "",
         element: <Home />,
       },
-      {
-        path: "/login",
-        element: <AdminLogin />,
-      },
+
       {
         path: "/services",
         element: <Services />,
@@ -77,43 +75,24 @@ const router = createBrowserRouter([
       },
       { path: "/doctors", element: <Team /> },
       {
-        path: "/admin/dashboard",
-        element: <Dashboard />,
-      },
-
-      { path: "/admin/reviews", element: <AdminReviews /> },
-      {
-        path: "/admin/service",
-        element: <CreateService />,
-      },
-      {
-        path: "/admin/appointments",
-        element: <Appointments />,
-      },
-      { path: "/admin/appointments/:id", element: <AppointmentDetails /> },
-      {
-        path: "/admin/create-blog",
-        element: <CreateBlog />,
+        element: <ProtectedRoute />, // This wraps everything below
+        children: [
+          { path: "/admin/dashboard", element: <Dashboard /> },
+          { path: "/admin/reviews", element: <AdminReviews /> },
+          { path: "/admin/service", element: <CreateService /> },
+          { path: "/admin/appointments", element: <Appointments /> },
+          { path: "/admin/appointments/:id", element: <AppointmentDetails /> },
+          { path: "/admin/create-blog", element: <CreateBlog /> },
+          { path: "/admin/create-doctor", element: <CreateDoctor /> },
+          { path: "/admin/enquiries", element: <Enquiries /> },
+          { path: "/admin/edit-doctor/:id", element: <UpdateDoctor /> },
+          { path: "/admin/update-blog/:slug", element: <UpdateBlog /> },
+          { path: "/admin/update-service/:id", element: <EditService /> },
+        ],
       },
       {
-        path: "/admin/create-doctor",
-        element: <CreateDoctor />,
-      },
-      {
-        path: "/admin/enquiries",
-        element: <Enquiries />,
-      },
-      {
-        path: "/admin/edit-doctor/:id",
-        element: <UpdateDoctor />,
-      },
-      {
-        path: "/admin/update-blog/:slug",
-        element: <UpdateBlog />,
-      },
-      {
-        path: "/admin/update-service/:id",
-        element: <EditService />,
+        path: "/admin/login",
+        element: <AdminLogin />,
       },
       {
         path: "*",
