@@ -122,7 +122,7 @@ const Footer = () => {
             © {new Date().getFullYear()} &nbsp;<span>PHYSIOTEREPIA</span>. All
             rights reserved
             {!isAdmin && (
-              <Link to="/login" className="admin-trigger">
+              <Link to="/admin/login" className="admin-trigger">
                 .
               </Link>
             )}
