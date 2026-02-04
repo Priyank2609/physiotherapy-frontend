@@ -356,7 +356,7 @@ export const MainNavbar = styled.header`
 
     .dropdown-menu li a {
       padding: 12px 40px;
-      font-size: 17px;
+      font-size: 12px;
       color: #a7f3d0;
       background: transparent;
     }
