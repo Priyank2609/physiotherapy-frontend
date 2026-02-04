@@ -375,5 +375,8 @@ export const MainNavbar = styled.header`
     .nav-brand span {
       font-size: 12px;
     }
+    .tagline {
+      font-size: 0.65rem;
+    }
   }
 `;
