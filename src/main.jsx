@@ -75,7 +75,7 @@ const router = createBrowserRouter([
       },
       { path: "/doctors", element: <Team /> },
       {
-        element: <ProtectedRoute />, // This wraps everything below
+        element: <ProtectedRoute />,
         children: [
           { path: "/admin/dashboard", element: <Dashboard /> },
           { path: "/admin/reviews", element: <AdminReviews /> },
