@@ -95,7 +95,7 @@ const MapSection = () => {
               </div>
               <div>
                 <h4>Working Hours</h4>
-                <p>Mon - Sat: 9:00 AM - 8:00 PM</p>
+                <p>Mon - Sat: 8:00 AM - 8:00 PM</p>
               </div>
             </div>
             <a
