@@ -303,7 +303,7 @@ export const MainNavbar = styled.header`
 
     .nav-links a,
     .nav-links span {
-      font-size: 12px;
+      font-size: 14px;
       padding: 14px 20px;
       background: rgba(255, 255, 255, 0.05);
       border-radius: 12px;
