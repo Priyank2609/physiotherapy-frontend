@@ -36,7 +36,7 @@ const MapSection = () => {
           <div className="map-box">
             <iframe
               title="Physiotherapy Clinic Location"
-              src="https://maps.app.goo.gl/gogaZD6CXr2ZpiiB8"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3675.879603768765!2d72.6431875!3d23.056812500000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e848aba5bd449%3A0x7136cd41efa2628c!2s3J4V%2BP7%2C%20Ahmedabad%2C%20Gujarat!5e1!3m2!1sen!2sin!4v1770201670218!5m2!1sen!2sin"
               width="100%"
               height="450"
               style={{ border: 0 }}
