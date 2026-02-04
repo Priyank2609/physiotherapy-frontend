@@ -106,7 +106,11 @@ const Footer = () => {
                 <Instagram size={20} strokeWidth={2.5} />
               </a>
 
-              <a href="/" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://www.facebook.com/share/1KJNUUQc9M/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Facebook size={20} strokeWidth={2.5} />
               </a>
               <NavLink to={"/contact"}>
