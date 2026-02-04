@@ -375,7 +375,7 @@ export const MainNavbar = styled.header`
     .nav-brand span {
       font-size: 12px;
     }
-    .tagline {
+    .brand-text .tagline {
       font-size: 0.65rem;
     }
   }
