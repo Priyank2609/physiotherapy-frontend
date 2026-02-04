@@ -10,6 +10,7 @@ import Footer from "./components/footer/Footer";
 import About from "./components/about/About";
 import ScrollToTop from "./components/scroll/ScrollTop";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { Analytics } from "@vercel/analytics/react";
 function App() {
   return (
     <>
@@ -22,6 +23,7 @@ function App() {
 
         <Footer />
         <SpeedInsights />
+        <Analytics />
       </div>
     </>
   );
