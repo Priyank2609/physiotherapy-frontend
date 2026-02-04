@@ -190,5 +190,8 @@ export const Wrapper = styled.div`
     .form-hero h1 {
       font-size: 32px;
     }
+    .form-hero .tagline {
+      font-size: 22px;
+    }
   }
 `;
