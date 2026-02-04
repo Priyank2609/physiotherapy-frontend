@@ -349,10 +349,8 @@ const DoctorDetailPage = () => {
                 className="get-directions"
               >
                 <div className="time-row">
-                  <MapPin size={18} /> <strong>In-Clinic Consultation</strong>
-                  <br />
-                  A-10/116, Krishna Nagar, Near Mahakali Mandir, Saijpur Bogha,
-                  Ahmedabad
+                  <MapPin size={18} />{" "}
+                  <span>Visiting & Clinical Consultation</span>
                 </div>
               </a>
             </div>
