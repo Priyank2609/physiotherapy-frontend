@@ -299,12 +299,11 @@ export const MainNavbar = styled.header`
 
     .nav-links li {
       width: 100%;
-      font-size: 1rem;
     }
 
     .nav-links a,
     .nav-links span {
-      font-size: 19px;
+      font-size: 12px;
       padding: 14px 20px;
       background: rgba(255, 255, 255, 0.05);
       border-radius: 12px;
