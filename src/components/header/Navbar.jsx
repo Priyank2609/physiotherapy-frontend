@@ -42,13 +42,15 @@ export const Navbar = () => {
       <MainNavbar>
         <div className="nav-container">
           <div className="nav-left">
-            <NavLink to={"/"}>
+            <NavLink to={"/"} style={{ textDecoration: "none" }}>
               <div className="nav-brand">
-                <img src={logo} alt="Logo" />
-                <div>
-                  <h1>PHYSIOTEREPIA</h1>
-                  <span>Physiotherapy and Rehab centre</span>
-                  <span>Your Revovery Starts Here</span>
+                <img src={logo} alt="Physioterepia Logo" />
+                <div className="brand-text">
+                  <h1>PHYSIOTHERAPIA</h1>
+                  <span className="tagline">
+                    Physiotherapy and Rehab Centre
+                  </span>
+                  <span className="sub-tagline">Your Recovery Starts Here</span>
                 </div>
               </div>
             </NavLink>

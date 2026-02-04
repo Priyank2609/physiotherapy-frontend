@@ -26,36 +26,77 @@ export const MainNavbar = styled.header`
     justify-content: space-between;
   }
 
-  /* ================= LEFT ================= */
+  // /* ================= LEFT ================= */
+  // .nav-brand {
+  //   display: flex;
+  //   align-items: center;
+  //   gap: 15px;
+  // }
+
+  // .nav-brand img {
+  //   width: 55px;
+  //   height: 55px;
+  //   background: #ffffff;
+  //   padding: 6px;
+  //   border-radius: 10px;
+  // }
+
+  // .nav-brand h1 {
+  //   font-size: 24px;
+  //   font-weight: 800;
+  //   color: #ffffff;
+  //   margin: 0;
+  //   letter-spacing: 0.5px;
+  // }
+
+  // .nav-brand span {
+  //   font-size: 13px;
+  //   color: #d1fae5;
+  //   display: block;
+  //   margin-top: 2px;
+  // }
+  /* Add these to your CSS file */
   .nav-brand {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 15px; /* Spaces the logo from the text */
+    text-decoration: none;
+    color: white;
   }
 
   .nav-brand img {
-    width: 55px;
-    height: 55px;
-    background: #ffffff;
-    padding: 6px;
-    border-radius: 10px;
+    height: 60px; /* Adjust based on your logo size */
+    width: auto;
+    border-radius: 8px;
   }
 
-  .nav-brand h1 {
-    font-size: 24px;
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .brand-text h1 {
+    font-size: 1.5rem;
     font-weight: 800;
-    color: #ffffff;
+    letter-spacing: 1px;
     margin: 0;
-    letter-spacing: 0.5px;
+    line-height: 1.2;
   }
 
-  .nav-brand span {
-    font-size: 13px;
-    color: #d1fae5;
+  .brand-text .tagline {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    font-weight: 500;
     display: block;
-    margin-top: 2px;
   }
 
+  .brand-text .sub-tagline {
+    font-size: 0.75rem;
+    opacity: 0.7;
+    font-style: italic;
+    display: block;
+  }
   /* ================= CENTER MENU ================= */
   .nav-links {
     list-style: none;
