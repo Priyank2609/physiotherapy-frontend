@@ -376,7 +376,7 @@ export const MainNavbar = styled.header`
       font-size: 12px;
     }
     .brand-text .tagline {
-      font-size: 0.65rem;
+      font-size: 0.75rem;
     }
   }
 `;
