@@ -21,8 +21,8 @@ const MapSection = () => {
           <span className="tag">Find Us</span>
           <h2>Visit Our Clinic</h2>
           <p>
-            Experience world-class rehabilitation at our Krishna Nagar facility.
-            Conveniently located near Priya Cinema.
+            Experience world-class rehabilitation at our Krishna Nagar facility,
+            conveniently located near Mahakali Temple, Nava Naroda.
           </p>
         </motion.div>
 
