@@ -9,7 +9,7 @@ import { Outlet } from "react-router-dom";
 import Footer from "./components/footer/Footer";
 import About from "./components/about/About";
 import ScrollToTop from "./components/scroll/ScrollTop";
-
+import { SpeedInsights } from "@vercel/speed-insights/react";
 function App() {
   return (
     <>
@@ -18,6 +18,7 @@ function App() {
         <ScrollToTop />
         <main className="app-content">
           <Outlet />
+          <SpeedInsights />
         </main>
 
         <Footer />
