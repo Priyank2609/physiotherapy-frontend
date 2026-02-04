@@ -1,45 +1,52 @@
 import { fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { logout } from "../slices/user.slice";
 
+/**
+ * Base query with auto logout on 401/403
+ */
+
 const rawBaseQuery = fetchBaseQuery({
   baseUrl: "https://physiotherapy-backend-6uw3.onrender.com/",
   credentials: "include",
 });
 
+// 🔒 prevents multiple logout calls from parallel 401s
+let isLoggingOut = false;
+
 export const baseQueryWithAutoLogout = async (args, api, extraOptions) => {
-  console.log("Request:", args.method || "GET", args.url || args);
+  // 🔹 Get request URL safely
+  const url = typeof args === "string" ? args : (args?.url ?? "");
 
   const result = await rawBaseQuery(args, api, extraOptions);
 
-  console.log("Response →", {
-    data: result.data,
-    error: result.error,
-    status: result.error?.status,
-    originalStatus: result.error?.originalStatus,
-  });
+  // 🔹 Skip auth-free routes (VERY IMPORTANT)
+  const authFreeRoutes = ["users/login", "users/logout"];
+  if (authFreeRoutes.some((route) => url.includes(route))) {
+    return result;
+  }
 
-  // ────────────────────────────────────────────────
-
+  // 🔹 Detect auth errors
   const isAuthError =
-    result.error &&
+    result?.error &&
     (result.error.status === 401 ||
       result.error.status === 403 ||
       result.error.originalStatus === 401 ||
       result.error.originalStatus === 403);
 
-  if (isAuthError) {
-    console.warn("🚪 Auth error detected → logging out");
+  // 🔥 Auto logout
+  if (isAuthError && !isLoggingOut) {
+    isLoggingOut = true;
 
+    console.warn("🚪 Session expired → auto logout");
+
+    // clear client state
     localStorage.removeItem("userInfo");
-    // Optional: localStorage.clear();  // if you want to nuke everything
-
     api.dispatch(logout());
 
-    // Small delay → helps when StrictMode + fast redirects cause race issues
+    // redirect (replace avoids back button issues)
     setTimeout(() => {
-      window.location.href = "/"; // or "/login"
-      // or better: use navigate() from react-router if possible
-    }, 100);
+      window.location.replace("/login");
+    }, 0);
   }
 
   return result;
