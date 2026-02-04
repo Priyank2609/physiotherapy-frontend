@@ -185,4 +185,10 @@ export const Wrapper = styled.div`
       cursor: not-allowed;
     }
   }
+
+  @media (max-width: 450px) {
+    .form-hero h1 {
+      font-size: 32px;
+    }
+  }
 `;
