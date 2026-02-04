@@ -30,6 +30,7 @@ import UpdateDoctor from "./components/team/TeamUpdatePage.jsx";
 import Team from "./components/team/Team.jsx";
 import UpdateBlog from "./components/research/UpdateBlog.jsx";
 import EditService from "./components/services/UpdateService.jsx";
+import NotFound from "./components/404/PageNotFound.jsx";
 
 const router = createBrowserRouter([
   {
@@ -113,6 +114,10 @@ const router = createBrowserRouter([
       {
         path: "/admin/update-service/:id",
         element: <EditService />,
+      },
+      {
+        path: "*",
+        element: <NotFound />,
       },
     ],
   },
