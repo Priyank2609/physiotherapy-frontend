@@ -299,6 +299,7 @@ export const MainNavbar = styled.header`
 
     .nav-links li {
       width: 100%;
+      font-size: 1rem;
     }
 
     .nav-links a,
@@ -319,7 +320,7 @@ export const MainNavbar = styled.header`
       background: linear-gradient(135deg, #22c1dc, #1aa6c8);
       color: white;
       justify-content: center;
-      font-weight: 200;
+      font-weight: 700;
       padding: 18px;
       border-radius: 50px;
       text-align: center;
