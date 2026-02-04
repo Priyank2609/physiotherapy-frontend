@@ -66,8 +66,8 @@ const Footer = () => {
             <h4 className="footer-title">Contact Us</h4>
             <div className="contact-item">
               <span>Phone:</span>{" "}
-              <a href="tel:+918460792897">+91 84607 92897</a>,{" "}
-              <a href="tel:+919825548921">+91 98255 48921</a>
+              <a href="tel:+918460792897">+91 84607 92897</a> ,{" "}
+              <a href="tel:+917229051916">+91 72290 51916</a>
             </div>
 
             <div className="contact-item">
