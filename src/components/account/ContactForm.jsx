@@ -192,7 +192,7 @@ const ContactForm = () => {
             </motion.div>
             <motion.div className="info-item" variants={itemVariants}>
               <h3>Opening Hours</h3>
-              <p>Mon - Sat: 9:00 AM - 8:00 PM</p>
+              <p>Mon - Sat: 8:00 AM - 8:00 PM</p>
               <p>Sunday: Closed</p>
             </motion.div>
             <motion.div className="info-item" variants={itemVariants}>
