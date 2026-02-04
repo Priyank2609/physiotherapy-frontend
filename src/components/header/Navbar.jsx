@@ -48,6 +48,7 @@ export const Navbar = () => {
                 <div>
                   <h1>PHYSIOTEREPIA</h1>
                   <span>Physiotherapy and Rehab centre</span>
+                  <span>Your Revovery Starts Here</span>
                 </div>
               </div>
             </NavLink>
