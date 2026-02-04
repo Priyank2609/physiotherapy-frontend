@@ -77,15 +77,15 @@ const Footer = () => {
               </a>
             </div>
             <div className="contact-item">
-              <span>Location:</span>
+              <span>Location: </span>
               <a
                 href="https://www.google.com/maps/place/3J4V%2BP7,+Ahmedabad,+Gujarat/@23.0568137,72.6425424,211m/data=!3m1!1e3!4m13!1m7!3m6!1s0x395e848aba5bd449:0x7136cd41efa2628c!2s3J4V%2BP7,+Ahmedabad,+Gujarat!3b1!8m2!3d23.0568125!4d72.6431875!3m4!1s0x395e848aba5bd449:0x7136cd41efa2628c!8m2!3d23.0568125!4d72.6431875?entry=ttu&g_ep=EgoyMDI2MDIwMS4wIKXMDSoASAFQAw%3D%3D"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="get-directions"
               >
-                A-10/116 First Floor Krishna Nagar Gujarat Housing Board Near
-                Mahakali Mandir Saijpur Bogha Ahmedabad
+                &nbsp;A-10/116 First Floor Krishna Nagar Gujarat Housing Board
+                Near Mahakali Mandir Saijpur Bogha Ahmedabad
               </a>
             </div>
 
