@@ -18,10 +18,10 @@ function App() {
         <ScrollToTop />
         <main className="app-content">
           <Outlet />
-          <SpeedInsights />
         </main>
 
         <Footer />
+        <SpeedInsights />
       </div>
     </>
   );
