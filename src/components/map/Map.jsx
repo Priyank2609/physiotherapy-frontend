@@ -36,7 +36,7 @@ const MapSection = () => {
           <div className="map-box">
             <iframe
               title="Physiotherapy Clinic Location"
-              src="https://www.google.com/maps?q=A-10/116%20First%20Floor%20Krishna%20Nagar%20Gujarat%20Housing%20Board%20Near%20Mahakali%20Mandir%20Saijpur%20Bogha%20Ahmedabad&output=embed"
+              src="https://www.google.com/maps/place/3J4V%2BP7,+Ahmedabad,+Gujarat/@23.0568174,72.6383219,844m/data=!3m1!1e3!4m13!1m7!3m6!1s0x395e848aba5bd449:0x7136cd41efa2628c!2s3J4V%2BP7,+Ahmedabad,+Gujarat!3b1!8m2!3d23.0568125!4d72.6431875!3m4!1s0x395e848aba5bd449:0x7136cd41efa2628c!8m2!3d23.0568125!4d72.6431875?entry=ttu&g_ep=EgoyMDI2MDIwMS4wIKXMDSoASAFQAw%3D%3D"
               width="100%"
               height="450"
               style={{ border: 0 }}
