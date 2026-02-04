@@ -46,7 +46,7 @@ export const Navbar = () => {
               <div className="nav-brand">
                 <img src={logo} alt="Physioterepia Logo" />
                 <div className="brand-text">
-                  <h1>PHYSIOTHERAPIA</h1>
+                  <h1>PHYSIOTHEREPIA</h1>
                   <span className="tagline">
                     Physiotherapy and Rehab Centre
                   </span>
