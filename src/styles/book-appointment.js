@@ -191,7 +191,7 @@ export const Wrapper = styled.div`
       font-size: 32px;
     }
     .form-hero .tagline {
-      font-size: 14px;
+      font-size: 15px;
     }
   }
 `;
