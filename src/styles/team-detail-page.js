@@ -92,6 +92,10 @@ export const HeroSection = styled.section`
   .icon-teal {
     color: #064e3b;
   }
+
+  @media (max-width: 450px) {
+    font-size: 2rem;
+  }
 `;
 
 // export const GridContainer = styled.div`
