@@ -132,11 +132,6 @@ export const AboutSection = styled.section`
       }
     }
   }
-  @media (max-wdith: 768px) {
-    .about-content h2 {
-      font-size: 30px;
-    }
-  }
 
   /* Mobile Responsive */
   @media (max-width: 1023px) {
@@ -151,6 +146,12 @@ export const AboutSection = styled.section`
       .about-list li {
         justify-content: center;
       }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .about-content h2 {
+      font-size: 30px;
     }
   }
 `;
