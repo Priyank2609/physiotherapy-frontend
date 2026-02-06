@@ -132,6 +132,11 @@ export const AboutSection = styled.section`
       }
     }
   }
+  @media (max-wdith: 768px) {
+    .about-content {
+      font-size: 30px;
+    }
+  }
 
   /* Mobile Responsive */
   @media (max-width: 1023px) {
