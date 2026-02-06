@@ -165,9 +165,12 @@ const BookAppointment = () => {
             >
               <option value="">-- Choose Treatment --</option>
               {services.map((service) => (
-                <option key={service._id} value={service._id}>
-                  {service.title}
-                </option>
+                <>
+                  <option key={service._id} value={service._id}>
+                    {service.title}
+                  </option>
+                  <option value="">Other</option>
+                </>
               ))}
             </select>
             {errors.serviceId && (
