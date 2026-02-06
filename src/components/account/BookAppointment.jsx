@@ -169,9 +169,9 @@ const BookAppointment = () => {
                   <option key={service._id} value={service._id}>
                     {service.title}
                   </option>
-                  <option value="">Other</option>
                 </>
               ))}
+              <option value="">Other</option>
             </select>
             {errors.serviceId && (
               <span className="error">{errors.serviceId.message}</span>
