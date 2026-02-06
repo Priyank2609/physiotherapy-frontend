@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MainNavbar } from "../../styles/navber";
 import logo from "../../assets/download.png";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -20,7 +20,23 @@ export const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const closeMenu = () => setMenuOpen(false);
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.width = "100%";
+    } else {
+      document.body.style.overflow = "auto";
+      document.body.style.position = "";
+      document.body.style.width = "";
+    }
 
+    return () => {
+      document.body.style.overflow = "auto";
+      document.body.style.position = "";
+      document.body.style.width = "";
+    };
+  }, [menuOpen]);
   const handleLogout = async () => {
     try {
       await log().unwrap();
