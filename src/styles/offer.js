@@ -89,6 +89,12 @@ export const DisciplinesSection = styled.section`
     }
   }
 
+  @media (max-width: 768px) {
+    .section-intro h2 {
+      font-size: 30px;
+    }
+  }
+
   .disciplines-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
