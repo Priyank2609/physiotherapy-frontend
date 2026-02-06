@@ -118,6 +118,12 @@ export const TeamSection = styled.section`
       line-height: 1.6;
     }
   }
+
+  @media (max-width: 768px) {
+    .header-area h2 {
+      font-size: 30px;
+    }
+  }
 `;
 
 /* ================= GRID ================= */
