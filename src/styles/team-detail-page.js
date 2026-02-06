@@ -94,7 +94,9 @@ export const HeroSection = styled.section`
   }
 
   @media (max-width: 450px) {
-    font-size: 2rem;
+    .header-info h1 {
+      font-size: 2rem;
+    }
   }
 `;
 
