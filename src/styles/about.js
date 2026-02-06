@@ -133,7 +133,7 @@ export const AboutSection = styled.section`
     }
   }
   @media (max-wdith: 768px) {
-    .about-content {
+    .about-content h2 {
       font-size: 30px;
     }
   }
