@@ -45,7 +45,7 @@ export const baseQueryWithAutoLogout = async (args, api, extraOptions) => {
 
     // redirect (replace avoids back button issues)
     setTimeout(() => {
-      window.location.replace("/login");
+      window.location.replace("/admin/login");
     }, 0);
   }
 
