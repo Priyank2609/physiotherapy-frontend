@@ -191,7 +191,7 @@ export const TeamCard = styled.div`
       height: 100%;
       object-fit: cover;
       display: block;
-      object-position: top;
+      object-position: bottom;
       transition: transform 0.8s ease;
       will-change: transform;
     }
