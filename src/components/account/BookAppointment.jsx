@@ -136,7 +136,13 @@ const BookAppointment = () => {
             <input
               type="tel"
               placeholder="+91 00000 00000"
-              {...register("patientPhone", { required: "Phone is required" })}
+              {...register("patientPhone", {
+                required: "Phone is required",
+                pattern: {
+                  value: /^[0-9]{10}$/,
+                  message: "Phone number must be exactly 10 digits",
+                },
+              })}
             />
             {errors.patientPhone && (
               <span className="error">{errors.patientPhone.message}</span>
