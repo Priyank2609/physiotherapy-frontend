@@ -150,8 +150,8 @@ const BookAppointment = () => {
               {...register("patientPhone", {
                 required: "Phone is required",
                 pattern: {
-                  value: /^[0-9]{10}$/,
-                  message: "Phone number must be exactly 10 digits",
+                  value: /^[6-9]\d{9}$/,
+                  message: "Enter valid Indian mobile number",
                 },
               })}
               onInput={(e) => {
