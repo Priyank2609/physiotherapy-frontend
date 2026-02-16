@@ -134,7 +134,7 @@ const AboutPage = () => {
                 alt="Therapy Session"
               />
               <div className="experience-badge">
-                <strong>10+</strong>
+                <strong>5+</strong>
                 <span>Years of Excellence</span>
               </div>
             </div>
