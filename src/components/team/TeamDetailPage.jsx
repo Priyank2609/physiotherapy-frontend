@@ -49,7 +49,16 @@ const DoctorDetailPage = () => {
 
   const userInfo = useSelector((state) => state.userInfo.userInfo);
   const isAdmin = userInfo?.user?.role === "Admin";
+  const formatTime = (time) => {
+    let [hours, minutes] = time.split(":").map(Number);
 
+    const ampm = hours >= 12 ? "PM" : "AM";
+
+    hours = hours % 12;
+    hours = hours ? hours : 12; // 0 → 12
+
+    return `${hours}:${minutes.toString().padStart(2, "0")} ${ampm}`;
+  };
   useEffect(() => {
     refetch();
   }, []);
