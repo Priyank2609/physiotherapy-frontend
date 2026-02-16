@@ -183,19 +183,23 @@ const BookAppointment = () => {
               <span className="error">{errors.serviceId.message}</span>
             )}
           </div>
-
           <div className="form-group">
             <label>Appointment Date *</label>
             <input
               type="date"
-              placeholder="Select Date"
-              {...register("appointmentDate", { required: "Date is required" })}
+              min={new Date().toISOString().split("T")[0]}
+              {...register("appointmentDate", {
+                required: "Date is required",
+                validate: (value) => {
+                  const today = new Date().toISOString().split("T")[0];
+                  return value >= today || "Past dates are not allowed";
+                },
+              })}
             />
             {errors.appointmentDate && (
               <span className="error">{errors.appointmentDate.message}</span>
             )}
           </div>
-
           <div className="form-group">
             <label>Appointment Time *</label>
             <input
