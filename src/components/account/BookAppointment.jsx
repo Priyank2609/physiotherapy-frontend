@@ -62,7 +62,15 @@ const BookAppointment = () => {
       });
     }
   };
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
 
+  // Max date = today + 30 days
+  const maxDateObj = new Date();
+  maxDateObj.setDate(today.getDate() + 30);
+
+  const todayStr = today.toISOString().split("T")[0];
+  const maxDateStr = maxDateObj.toISOString().split("T")[0];
   return (
     <Wrapper>
       <section className="form-hero">
@@ -185,17 +193,39 @@ const BookAppointment = () => {
           </div>
           <div className="form-group">
             <label>Appointment Date *</label>
+
             <input
               type="date"
-              min={new Date().toISOString().split("T")[0]}
+              min={todayStr}
+              max={maxDateStr}
               {...register("appointmentDate", {
                 required: "Date is required",
+
                 validate: (value) => {
-                  const today = new Date().toISOString().split("T")[0];
-                  return value >= today || "Past dates are not allowed";
+                  const selected = new Date(value);
+                  selected.setHours(0, 0, 0, 0);
+
+                  // ❌ Past date check
+                  if (selected < today) {
+                    return "Past dates are not allowed";
+                  }
+
+                  // ❌ Sunday check
+                  if (selected.getDay() === 0) {
+                    return "Appointments are not available on Sundays";
+                  }
+
+                  // ❌ Same day booking time restriction (after 6 PM)
+                  const now = new Date();
+                  if (value === todayStr && now.getHours() >= 18) {
+                    return "Same-day booking closed after 6 PM";
+                  }
+
+                  return true;
                 },
               })}
             />
+
             {errors.appointmentDate && (
               <span className="error">{errors.appointmentDate.message}</span>
             )}
