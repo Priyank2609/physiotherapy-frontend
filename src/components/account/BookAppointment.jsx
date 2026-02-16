@@ -170,10 +170,6 @@ const BookAppointment = () => {
             {errors.patientPhone && (
               <span className="error">{errors.patientPhone.message}</span>
             )}
-
-            {errors.patientPhone && (
-              <span className="error">{errors.patientPhone.message}</span>
-            )}
           </div>
 
           <div className="form-group">
