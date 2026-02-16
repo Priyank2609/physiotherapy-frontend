@@ -65,25 +65,12 @@ const BookAppointment = () => {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  const bookingDate = new Date(appointmentDate);
-  bookingDate.setHours(0, 0, 0, 0);
+  // Max date = today + 30 days
+  const maxDateObj = new Date();
+  maxDateObj.setDate(today.getDate() + 30);
 
-  // Convert selected time to minutes
-  const appointmentMinutes = toMinutes(appointmentTime);
-
-  // Current time in minutes
-  const now = new Date();
-  const currentMinutes = now.getHours() * 60 + now.getMinutes();
-
-  // ❌ Block past time if booking for today
-  if (bookingDate.getTime() === today.getTime()) {
-    if (appointmentMinutes <= currentMinutes) {
-      return res.status(400).json({
-        success: false,
-        message: "Cannot book past time slots",
-      });
-    }
-  }
+  const todayStr = today.toISOString().split("T")[0];
+  const maxDateStr = maxDateObj.toISOString().split("T")[0];
   return (
     <Wrapper>
       <section className="form-hero">
