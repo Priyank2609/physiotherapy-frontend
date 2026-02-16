@@ -339,7 +339,7 @@ const DoctorDetailPage = () => {
                 <Clock size={18} />{" "}
                 <span>
                   {doctor.availability?.hours?.start} AM -{" "}
-                  {doctor.availability?.hours?.end} PM
+                  {formatTime(doctor.availability?.hours?.end)}
                 </span>
               </div>
               <a
