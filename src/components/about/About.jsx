@@ -56,7 +56,7 @@ const About = () => {
               transition={{ delay: 0.8, type: "spring", stiffness: 200 }}
               viewport={{ once: true }}
             >
-              <h3>10+</h3>
+              <h3>5+</h3>
               <span>Years Experience</span>
             </motion.div>
           </motion.div>
