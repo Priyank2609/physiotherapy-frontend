@@ -65,12 +65,25 @@ const BookAppointment = () => {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  // Max date = today + 30 days
-  const maxDateObj = new Date();
-  maxDateObj.setDate(today.getDate() + 30);
+  const bookingDate = new Date(appointmentDate);
+  bookingDate.setHours(0, 0, 0, 0);
 
-  const todayStr = today.toISOString().split("T")[0];
-  const maxDateStr = maxDateObj.toISOString().split("T")[0];
+  // Convert selected time to minutes
+  const appointmentMinutes = toMinutes(appointmentTime);
+
+  // Current time in minutes
+  const now = new Date();
+  const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+  // ❌ Block past time if booking for today
+  if (bookingDate.getTime() === today.getTime()) {
+    if (appointmentMinutes <= currentMinutes) {
+      return res.status(400).json({
+        success: false,
+        message: "Cannot book past time slots",
+      });
+    }
+  }
   return (
     <Wrapper>
       <section className="form-hero">
@@ -149,15 +162,27 @@ const BookAppointment = () => {
               inputMode="numeric"
               {...register("patientPhone", {
                 required: "Phone is required",
-                pattern: {
-                  value: /^[6-9]\d{9}$/,
-                  message: "Enter valid Indian mobile number",
+
+                validate: (value) => {
+                  if (!/^[6-9]\d{9}$/.test(value)) {
+                    return "Enter valid Indian mobile number";
+                  }
+
+                  if (/^(\d)\1{9}$/.test(value)) {
+                    return "Invalid phone number";
+                  }
+
+                  return true;
                 },
               })}
               onInput={(e) => {
                 e.target.value = e.target.value.replace(/\D/g, "");
               }}
             />
+
+            {errors.patientPhone && (
+              <span className="error">{errors.patientPhone.message}</span>
+            )}
 
             {errors.patientPhone && (
               <span className="error">{errors.patientPhone.message}</span>
