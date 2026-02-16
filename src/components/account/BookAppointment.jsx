@@ -141,9 +141,12 @@ const BookAppointment = () => {
 
           <div className="form-group">
             <label>Patient Phone *</label>
+
             <input
               type="tel"
-              placeholder="+91 00000 00000"
+              placeholder="Enter 10 digit phone number"
+              maxLength={10}
+              inputMode="numeric"
               {...register("patientPhone", {
                 required: "Phone is required",
                 pattern: {
@@ -151,7 +154,11 @@ const BookAppointment = () => {
                   message: "Phone number must be exactly 10 digits",
                 },
               })}
+              onInput={(e) => {
+                e.target.value = e.target.value.replace(/\D/g, "");
+              }}
             />
+
             {errors.patientPhone && (
               <span className="error">{errors.patientPhone.message}</span>
             )}
